@@ -1,0 +1,57 @@
+diff --git a/src/common/backends/imgui/launcher_imgui.cpp b/src/common/backends/imgui/launcher_imgui.cpp
+index f7c89f7..9794c79 100644
+--- a/src/common/backends/imgui/launcher_imgui.cpp
++++ b/src/common/backends/imgui/launcher_imgui.cpp
+@@ -1250,6 +1250,8 @@ void draw_game_panel(LauncherModel* m, const LauncherTheme& th, bool fill_h = fa
+     else
+         snprintf(change_label, sizeof(change_label), "%s %s",
+                  ui_text("Browse For"), ui_text(noun));
++    if (disc_no == 0 && std::strcmp(noun, "Disc") == 0)
++        std::snprintf(change_label, sizeof(change_label), "Browse or drop .cue / .bin");
+     if (m->import_sbi_cb)
+         std::strncat(change_label, " / SBI", sizeof(change_label) - std::strlen(change_label) - 1);
+     if (ImGui::Button(change_label, ImVec2(availw, px(34)))) {
+@@ -9754,6 +9756,20 @@ extern "C" LngAction launcher_backend_run(LauncherPlatform* p,
+         if (SDL_WaitEventTimeout(&ev, 16)) do {
+             if (ev.type == SDL_EVENT_QUIT) p->should_quit = true;
+             if (ev.type == SDL_EVENT_WINDOW_CLOSE_REQUESTED) p->should_quit = true;
++#if defined(LNG_SDL3)
++            if (ev.type == SDL_EVENT_DROP_FILE && ev.drop.data) {
++                if (!m->setup_preparing)
++                    launcher_model_set_rom(m, ev.drop.data);
++                continue;
++            }
++#else
++            if (ev.type == SDL_DROPFILE && ev.drop.file) {
++                if (!m->setup_preparing)
++                    launcher_model_set_rom(m, ev.drop.file);
++                SDL_free(ev.drop.file);
++                continue;
++            }
++#endif
+             if (try_capture(m, ev)) continue;
+             /* Arm gamepad navigation on the first REAL pad input.
+              *
+diff --git a/src/common/launcher_debug.c b/src/common/launcher_debug.c
+index 7cafdc6..de35b65 100644
+--- a/src/common/launcher_debug.c
++++ b/src/common/launcher_debug.c
+@@ -201,6 +201,18 @@ void launcher_debug_step(LauncherPlatform* p, LauncherModel* m) {
+         }
+     } else if (strncmp(c, "wait:", 5) == 0) {
+         g_wait_frames = atoi(c + 5);
++    } else if (strncmp(c, "drop:", 5) == 0) {
++        SDL_Event e;
++        SDL_zero(e);
++#if defined(LNG_SDL3)
++        e.type = SDL_EVENT_DROP_FILE;
++        e.drop.data = c + 5;
++#else
++        e.type = SDL_DROPFILE;
++        e.drop.file = SDL_strdup(c + 5);
++#endif
++        e.drop.windowID = SDL_GetWindowID(p->window);
++        SDL_PushEvent(&e);
+     } else if (strncmp(c, "shot:", 5) == 0) {
+         launcher_capture_png(c + 5, p->pixel_w, p->pixel_h);
+     } else if (strcmp(c, "quit") == 0) {

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Rogue Trip Recompiled
+Comment=Generate and play Rogue Trip from your own PS1 disc
+Exec=AppRun %f
+Icon=roguetrip
+Terminal=false
+Categories=Game;

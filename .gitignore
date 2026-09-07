@@ -1,0 +1,48 @@
+# Local agent configuration
+.agents/
+.codex/
+
+# Build output and game-derived code
+/build*/
+/generated/
+/dist/
+/disc/
+/bios/
+/overlays/
+/captures/
+*.o
+*.a
+*.so
+*.dll
+*.exe
+
+# User-supplied game and BIOS images
+*.bin
+*.BIN
+*.cue
+*.CUE
+*.iso
+*.img
+*.chd
+SLUS_*
+SCUS_*
+SLES_*
+SCES_*
+
+# Saves, settings, diagnostics, caches
+/saves/
+*.mcd
+*.state
+*.ini
+*.log
+*.ppm
+*.bmp
+/psx_last_run_report.json
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+
+# Generated shortcut contains the local installation path
+/Rogue Trip Recompiled.desktop

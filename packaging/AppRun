@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+bundle=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+version=$(cat "$bundle/VERSION")
+data_root=${XDG_DATA_HOME:-"$HOME/.local/share"}
+project="$data_root/RogueTripRecomp/$version"
+mkdir -p "$project"
+# flock prevents concurrent first launches from seeing a half-copied source tree.
+exec 9>"$project/.install.lock"
+flock 9
+if [[ ! -f "$project/.appimage-installed" ]]; then
+    cp -a "$bundle/usr/share/roguetrip/." "$project/"
+    mkdir -p "$project/appimage-libs"
+    cp -a "$bundle/usr/lib/." "$project/appimage-libs/"
+    touch "$project/.appimage-installed"
+fi
+flock -u 9
+exec 9>&-
+export ROGUETRIP_PROJECT_ROOT="$project"
+export ROGUETRIP_BUILD_DIR="$project/build-release"
+export LD_LIBRARY_PATH="$project/appimage-libs${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+# The setup host now lives in a writable install, outside the read-only mount.
+unset APPIMAGE APPDIR
+cd "$project"
+args=(--game "$project/game.toml" --launcher)
+if [[ $# -gt 0 && "$1" != --* ]]; then
+    args+=(--disc "$1")
+    shift
+fi
+exec "$project/Rogue_Trip_Recompiled" "${args[@]}" "$@"
