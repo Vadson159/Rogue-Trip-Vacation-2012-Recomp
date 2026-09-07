@@ -1,16 +1,47 @@
 # Rogue Trip Recompiled
 
-Native Linux port of **Rogue Trip: Vacation 2012 (USA), SLUS-00643**, built with
-[PSXRecomp](https://github.com/mstan/psxrecomp) and
-[recomp-ui](https://github.com/mstan/recomp-ui).
+Rogue Trip: Vacation 2012 for PC, built with [PSXRecomp](https://github.com/mstan/psxrecomp).
 
-**Tested only on Linux (Garuda Linux, x86_64).** Windows and macOS have not been tested.
+Tested only on Linux (Garuda, x86_64). Menus and the first level, XLAX, work;
+the rest of the game hasn't been fully tested.
+
+## Play
+
+[Download the Linux AppImage](https://github.com/Wuteva/RogueTripRecomp/releases).
+
+```sh
+chmod +x RogueTripRecomp-0.1.0-linux-x86_64.AppImage
+./RogueTripRecomp-0.1.0-linux-x86_64.AppImage
+```
+
+Drop your `.cue` or Track 01 `.bin` into the launcher. Complete **Generate & rebuild**
+once, then click **PLAY**. Keep the CUE and all 17 BIN tracks together for music.
+You need your own game disc; OpenBIOS is included.
+
+Requires glibc 2.43+, GCC 16 runtime libraries, OpenGL drivers and Python 3.11+.
+The first build also needs CMake, Ninja and a C/C++ compiler; the wizard can download
+the toolchain. For older Linux distributions, build from source.
+If FUSE is unavailable, launch with `--appimage-extract-and-run`.
+
+The AppImage stores the game and saves in
+`~/.local/share/RogueTripRecomp/0.1.0` (or under `$XDG_DATA_HOME` if set).
+
+## Controls
+
+| Keyboard | PlayStation |
+| --- | --- |
+| Arrow keys | D-pad |
+| Enter / Right Shift | Start / Select |
+| X / S / Z / A | Cross / Circle / Square / Triangle |
+| Q / E | L1 / L2 |
+| W / R | R1 / R2 |
+
+Controllers and key bindings can be configured in the launcher.
 
 ## Supported disc
 
-USA release, **SLUS-00643**, boot executable `SLUS_006.43`, 17 tracks.
-The hashes below identify **Track 01 BIN**, not the CUE or concatenated disc.
-Other regions/revisions have not been tested.
+**USA, SLUS-00643**, 17 tracks. Other versions are untested.
+Hashes are for the **Track 01 BIN**:
 
 | Field | Value |
 | --- | --- |
@@ -19,52 +50,10 @@ Other regions/revisions have not been tested.
 | MD5 | `6a950ab677e902dcecebc8f57cb4b7f9` |
 | CRC32 | `e9f241dd` |
 
-The generated build checks the disc against the identity in `game.toml`.
-
-## Play
-
-Download the **Linux AppImage** from the
-[releases page](https://github.com/Wuteva/RogueTripRecomp/releases),
-make it executable, and launch it. See [Linux AppImage](#linux-appimage) below
-for system requirements and commands.
-
-On first launch, follow the setup wizard, select or drop your game's `.cue` or
-data-track `.bin`, and complete **Generate & rebuild**. Then click **PLAY**.
-Reopen the AppImage for later sessions; it reuses your locally compiled game.
-Keep the CUE and all 17 BIN tracks together: the framework resolves a dropped BIN
-back to its companion CUE to retain the CD audio tracks.
-
-Keyboard defaults: arrows = D-pad; **Enter** = Start; **X** = Cross/confirm;
-**S** = Circle; **Z** = Square; **A** = Triangle; **Q/E** = L1/L2;
-**W/R** = R1/R2; right Shift = Select. Configure controllers in the launcher.
-The bundled OpenBIOS is used by default. No retail BIOS is required for this build.
-Memory-card state is stored under `saves/` relative to the game configuration.
-
-## Linux AppImage
-
-The [GitHub release](https://github.com/Wuteva/RogueTripRecomp/releases) provides
-an experimental **x86_64 setup AppImage**, tested only on Garuda Linux.
-It requires **glibc 2.43 or newer**, GCC 16 runtime libraries, system OpenGL
-drivers, and Python 3.11+.
-The first-run wizard requires CMake, Ninja and a C/C++ toolchain (it can acquire
-PSXRecomp's toolchain). Internet access may be needed for build dependencies.
-Older Linux distributions are not supported by this binary; build from source there.
-
-```sh
-chmod +x RogueTripRecomp-0.1.0-linux-x86_64.AppImage
-./RogueTripRecomp-0.1.0-linux-x86_64.AppImage
-```
-
-Drop your supported disc, then follow **Generate & rebuild**. The package contains
-no game image or compiled game code. On first run it installs its setup files to
-`${XDG_DATA_HOME:-~/.local/share}/RogueTripRecomp/0.1.0`; generated code, the built
-game, and saves stay in that writable directory. Later launches reuse the build.
-If FUSE is unavailable, use `--appimage-extract-and-run`.
-
 ## Build from source
 
-Requirements: Git, Python 3.11+, CMake 3.20+, Ninja, C/C++ compiler, SDL3 and
-OpenGL development libraries. SDL3 can also be fetched automatically by the framework when no system package is found.
+Requires Git, Python 3.11+, CMake 3.20+, Ninja, a C/C++ compiler and OpenGL
+development libraries. SDL3 is fetched if not installed.
 
 ```sh
 git clone --recurse-submodules https://github.com/Wuteva/RogueTripRecomp.git
@@ -73,50 +62,9 @@ cd RogueTripRecomp
 ./launch.sh
 ```
 
-For later sessions from a source checkout, run `./launch.sh`.
-`ROGUETRIP_BUILD_JOBS=4 ./build.sh ...` limits compile concurrency.
-The output is `build-release/Rogue_Trip_Recompiled`; keep its adjacent assets,
-bios, mods and configs. `launch.sh` supplies the root game config explicitly.
-Generated game code, disc data, saves and build directories are local artifacts.
-
-Dependency revisions are recorded in `framework_pins.txt`. The framework is
-pinned to `953381b` because its newer September 6 lobby interfaces do not compile
-against the public launcher master revision used here. Local launcher changes
-(file-drop handling, discovery label, scripted drop test) are preserved in
-`patches/recomp-ui-disc-drop.patch`. Rewind and netplay are disabled.
-
-## Validation and limits
-
-Initial bring-up reached the intro FMV, menus, rotating vehicle selection and
-XLAX gameplay using the supplied US disc and OpenBIOS. Automated controller
-input navigated the menus and selected the vehicle. Screenshots are in
-`docs/verification/`. Invalid disc drops disable Play; a valid Track 01 BIN is
-verified and re-enables it. The native launcher and XLAX gameplay were also verified in an SDL/OpenGL
-virtual display.
-
-This is an initial playable build, not a completed all-level compatibility audit.
-Long sessions, every level/vehicle, two-player play, save/load round-trips and
-audio accuracy have not been fully verified. PSXRecomp statically translates the
-boot executable and uses its interpreter/native overlay system for streamed code;
-this is not a claim that every overlay is already ahead-of-time compiled.
-
-Release builds default to debug tools off. For development, configure
-`-DPSX_DEBUG_TOOLS=ON` to enable diagnostics on localhost port 4370, or OFF
-to disable them.
-
-Do not distribute the supplied disc files or generated game-derived code.
-Framework and launcher licensing remain in their respective source directories;
-OpenBIOS carries its bundled MIT notice.
-
 ## License and credits
 
-This project uses **PSXRecomp by Matthew Stan and contributors** and adopts its
-**PolyForm Noncommercial License 1.0.0**, including the upstream clarification.
-See [LICENSE](LICENSE). The **recomp-ui** launcher and our launcher patch are
-MIT-licensed. OpenBIOS and other dependencies retain their own licenses.
-See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for credits and notices.
-
-The dependencies are pinned Git submodules. `build.sh` automatically applies the
-launcher patch after checkout; it is safe to run again. For an existing clone,
-run `git submodule update --init --recursive` before building. No ROM, extracted
-game executable, retail BIOS or generated game code is published here.
+[PolyForm Noncommercial 1.0.0](LICENSE), following PSXRecomp's license.
+Thanks to Matthew Stan and contributors for [PSXRecomp](https://github.com/mstan/psxrecomp),
+and to the [recomp-ui](https://github.com/mstan/recomp-ui) and OpenBIOS projects.
+The launcher and its patch use MIT. See [third-party notices](THIRD_PARTY_NOTICES.md).
