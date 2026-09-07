@@ -23,9 +23,14 @@ The generated build checks the disc against the identity in `game.toml`.
 
 ## Play
 
-Run `./launch.sh` from this directory (the existing local desktop shortcut also works).
-Drop the game's `.cue` or data-track `.bin` anywhere in the window, then click
-**PLAY**. Browse also works. Build once from your own disc using the instructions below.
+Download the **Linux AppImage** from the
+[releases page](https://github.com/Wuteva/RogueTripRecomp/releases),
+make it executable, and launch it. See [Linux AppImage](#linux-appimage) below
+for system requirements and commands.
+
+On first launch, follow the setup wizard, select or drop your game's `.cue` or
+data-track `.bin`, and complete **Generate & rebuild**. Then click **PLAY**.
+Reopen the AppImage for later sessions; it reuses your locally compiled game.
 Keep the CUE and all 17 BIN tracks together: the framework resolves a dropped BIN
 back to its companion CUE to retain the CD audio tracks.
 
@@ -56,7 +61,7 @@ no game image or compiled game code. On first run it installs its setup files to
 game, and saves stay in that writable directory. Later launches reuse the build.
 If FUSE is unavailable, use `--appimage-extract-and-run`.
 
-## Build
+## Build from source
 
 Requirements: Git, Python 3.11+, CMake 3.20+, Ninja, C/C++ compiler, SDL3 and
 OpenGL development libraries. SDL3 can also be fetched automatically by the framework when no system package is found.
@@ -68,6 +73,7 @@ cd RogueTripRecomp
 ./launch.sh
 ```
 
+For later sessions from a source checkout, run `./launch.sh`.
 `ROGUETRIP_BUILD_JOBS=4 ./build.sh ...` limits compile concurrency.
 The output is `build-release/Rogue_Trip_Recompiled`; keep its adjacent assets,
 bios, mods and configs. `launch.sh` supplies the root game config explicitly.
@@ -94,9 +100,9 @@ audio accuracy have not been fully verified. PSXRecomp statically translates the
 boot executable and uses its interpreter/native overlay system for streamed code;
 this is not a claim that every overlay is already ahead-of-time compiled.
 
-The current local build has `PSX_DEBUG_TOOLS=ON` for bring-up (localhost port 4370).
-Fresh Release builds default to debug tools off. Configure
-`-DPSX_DEBUG_TOOLS=ON` to enable them, or OFF to disable them.
+Release builds default to debug tools off. For development, configure
+`-DPSX_DEBUG_TOOLS=ON` to enable diagnostics on localhost port 4370, or OFF
+to disable them.
 
 Do not distribute the supplied disc files or generated game-derived code.
 Framework and launcher licensing remain in their respective source directories;
