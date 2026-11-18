@@ -1,0 +1,712 @@
+diff --git a/recompiler/src/config_loader.cpp b/recompiler/src/config_loader.cpp
+index 6e7e21ec..d357845a 100644
+--- a/recompiler/src/config_loader.cpp
++++ b/recompiler/src/config_loader.cpp
+@@ -1237,6 +1237,10 @@ GameConfig load_game_config(const fs::path& config_path_in) {
+     if (game.contains("disc_serials"))
+         disc_serials = toml::find<std::vector<std::string>>(game, "disc_serials");
+ 
++    std::vector<std::string> alt_ids;
++    if (game.contains("alt_ids"))
++        alt_ids = toml::find<std::vector<std::string>>(game, "alt_ids");
++
+     // Optional expected disc identity (launcher verification badge).
+     bool has_disc_crc = false;
+     uint32_t disc_crc = 0;
+@@ -2096,6 +2100,7 @@ GameConfig load_game_config(const fs::path& config_path_in) {
+         /*stack_base*/       stack_base,
+         /*discs*/            discs,
+         /*disc_serials*/     disc_serials,
++        /*alt_ids*/          alt_ids,
+         /*has_disc_crc*/     has_disc_crc,
+         /*disc_crc*/         disc_crc,
+         /*disc_sha1*/        disc_sha1,
+diff --git a/recompiler/src/config_loader.h b/recompiler/src/config_loader.h
+index 766fcb20..e4433a1e 100644
+--- a/recompiler/src/config_loader.h
++++ b/recompiler/src/config_loader.h
+@@ -758,6 +758,9 @@ struct GameConfig {
+     // still applies. Written by tools/new_project_layout from the same probe
+     // that produced disc_set.json.
+     std::vector<std::string> disc_serials;
++    // Optional additional accepted boot serials for multi-region unified builds
++    // ([game] alt_ids = ["SLES-01417"]). Keeps `id` single-valued for cache dirs.
++    std::vector<std::string> alt_ids;
+ 
+     // Optional expected disc identity, for the launcher's "Disc verified" badge.
+     // disc_crc: full-file CRC32 (IEEE) of the data track. disc_sha1: lowercase
+diff --git a/recompiler/src/control_flow.cpp b/recompiler/src/control_flow.cpp
+index 833db11e..57bd2f42 100644
+--- a/recompiler/src/control_flow.cpp
++++ b/recompiler/src/control_flow.cpp
+@@ -425,6 +425,40 @@ ControlFlowGraph ControlFlowAnalyzer::analyze_function(const Function& func) {
+                 add_boundary(after_delay);
+             }
+         }
++
++        // Synthesized CPS return addresses (`lui $ra, hi` followed shortly by
++        // `addiu $ra, $ra, lo` or `ori $ra, $ra, lo`, used by hand-coded GTE
++        // loops that jump to shared subroutines via `j callee` and return via
++        // `jr $ra`). Registering the target as a block boundary ensures CPS
++        // registers it in `cps_cur_continuations_` and the flat dispatch table.
++        if ((instr >> 16) == 0x3C1Fu) { // lui $ra, hi
++            uint32_t hi = instr & 0xFFFFu;
++            for (uint32_t k = 1; k <= 6 && addr + 4u * k < walk_hi; ++k) {
++                auto next_opt = exe_.read_word(addr + 4u * k);
++                if (!next_opt) break;
++                uint32_t nw = *next_opt;
++                uint32_t n_op = (nw >> 26) & 0x3Fu;
++                if (nw == 0x03E00008u || n_op == 0x03u ||
++                    (n_op == 0x00u && (nw & 0x3Fu) == 0x09u)) {
++                    break; // jr $ra / jal / jalr clobbers or consumes $ra
++                }
++                uint32_t ra_tgt = 0;
++                if ((nw >> 16) == 0x27FFu) { // addiu $ra, $ra, simm
++                    int16_t lo = static_cast<int16_t>(nw & 0xFFFFu);
++                    ra_tgt = (hi << 16) + static_cast<uint32_t>(static_cast<int32_t>(lo));
++                } else if ((nw >> 16) == 0x37FFu) { // ori $ra, $ra, uimm
++                    ra_tgt = (hi << 16) | (nw & 0xFFFFu);
++                }
++                if (ra_tgt != 0 && (ra_tgt & 3u) == 0u &&
++                    ra_tgt > walk_lo && ra_tgt < walk_hi) {
++                    auto prev_w = exe_.read_word(ra_tgt - 4u);
++                    if (!prev_w || !is_control_flow(*prev_w)) {
++                        add_boundary(ra_tgt);
++                    }
++                    break;
++                }
++            }
++        }
+     }
+     // Build blocks from boundaries
+     std::sort(boundary_vec.begin(), boundary_vec.end());
+diff --git a/recompiler/src/function_analysis.cpp b/recompiler/src/function_analysis.cpp
+index ede40acc..4c81071b 100644
+--- a/recompiler/src/function_analysis.cpp
++++ b/recompiler/src/function_analysis.cpp
+@@ -894,40 +894,64 @@ bool resolve_exact_bounded_jump_table(
+         return false;
+     }
+ 
+-    // Exact canonical guard: sltiu; beq; nop; sll. This is the same accepted
+-    // suffix as the Python capture verifier and excludes unrelated bounds.
+-    if (sll_pc < entry + 12u) return false;
+-    uint32_t guard_pc = sll_pc - 8u;
+-    uint32_t bound_pc = sll_pc - 12u;
+-    auto guard_word_opt = read(guard_pc);
+-    auto bound_word = read(bound_pc);
+-    auto guard_delay = read(sll_pc - 4u);
+-    if (!guard_word_opt.has_value() || !bound_word.has_value() ||
+-        !guard_delay.has_value() || *guard_delay != 0u) {
++    // Exact bounded guard: sltiu [0..3 non-CF insns] beqz [delay slot + 0..3
++    // non-CF insns (e.g. Psy-Q 4.x LUI/ADDIU table base)] sll. Keeps strict
++    // reaching-definition soundness while supporting ccpsx -O2 scheduling.
++    uint32_t guard_pc = 0u, guard_word = 0u, bound_reg = 0u;
++    for (uint32_t back = 8u; back <= 20u; back += 4u) {
++        if (sll_pc < entry + back) break;
++        uint32_t cand_pc = sll_pc - back;
++        auto cand_w = read(cand_pc);
++        if (!cand_w.has_value()) return false;
++        if (is_control(cand_pc, *cand_w)) {
++            guard_pc = cand_pc;
++            guard_word = *cand_w;
++            break;
++        }
++    }
++    if (guard_pc == 0u || guard_pc < entry + 4u || in_delay_slot(guard_pc)) {
+         return false;
+     }
+-    uint32_t guard_word = *guard_word_opt;
+     uint32_t guard_op = (guard_word >> 26) & 0x3Fu;
+     uint32_t guard_rs = (guard_word >> 21) & 0x1Fu;
+     uint32_t guard_rt = (guard_word >> 16) & 0x1Fu;
+-    uint32_t bound_reg = guard_rs == 0u ? guard_rt : guard_rs;
++    bound_reg = guard_rs == 0u ? guard_rt : guard_rs;
+     if (guard_op != 0x04u || bound_reg == 0u ||
+-        (guard_rs != 0u && guard_rt != 0u)) {
++        (guard_rs != 0u && guard_rt != 0u) ||
++        writes_between(guard_pc + 4u, sll_pc, index_reg)) {
+         return false;
+     }
+-    uint32_t bound_op = (*bound_word >> 26) & 0x3Fu;
+-    uint32_t bound_rs = (*bound_word >> 21) & 0x1Fu;
+-    uint32_t bound_rt = (*bound_word >> 16) & 0x1Fu;
+-    uint32_t count = *bound_word & 0xFFFFu;
++    for (uint32_t pc = guard_pc + 4u; pc < sll_pc; pc += 4u) {
++        auto w = read(pc);
++        if (!w.has_value() || is_control(pc, *w)) return false;
++    }
++
++    uint32_t bound_pc = 0u, bound_word_val = 0u;
++    for (uint32_t back = 4u; back <= 16u; back += 4u) {
++        if (guard_pc < entry + back) break;
++        uint32_t cand_pc = guard_pc - back;
++        auto cand_w = read(cand_pc);
++        if (!cand_w.has_value() || is_control(cand_pc, *cand_w)) return false;
++        if (exact_instruction_writes_gpr(*cand_w, bound_reg)) {
++            bound_pc = cand_pc;
++            bound_word_val = *cand_w;
++            break;
++        }
++    }
++    if (bound_pc == 0u || in_delay_slot(bound_pc)) return false;
++    uint32_t bound_op = (bound_word_val >> 26) & 0x3Fu;
++    uint32_t bound_rs = (bound_word_val >> 21) & 0x1Fu;
++    uint32_t bound_rt = (bound_word_val >> 16) & 0x1Fu;
++    uint32_t count = bound_word_val & 0xFFFFu;
+     if (bound_op != 0x0Bu || bound_rs != index_reg ||
+         bound_rt != bound_reg || count == 0u || count >= 512u ||
+-        in_delay_slot(bound_pc)) {
++        writes_between(bound_pc + 4u, guard_pc, index_reg)) {
+         return false;
+     }
+     uint32_t guard_target = exact_branch_target(guard_pc, guard_word);
+     if ((guard_target & 3u) != 0u || guard_target < entry ||
+         guard_target >= hard_cap ||
+-        (guard_target >= sll_pc && guard_target < jr_pc + 8u)) {
++        (guard_target >= guard_pc + 8u && guard_target < jr_pc + 8u)) {
+         return false;
+     }
+ 
+@@ -974,16 +998,18 @@ bool resolve_exact_bounded_jump_table(
+             break;
+         }
+     }
+-    if (lui_pc == 0u || in_delay_slot(lui_pc) ||
++    uint32_t protected_lo = std::min(bound_pc, lui_pc);
++    if (lui_pc == 0u ||
++        (in_delay_slot(lui_pc) && lui_pc != guard_pc + 4u) ||
+         (low_pc != 0u && in_delay_slot(low_pc)) ||
+-        inbound_skips(lui_pc, addu_pc) ||
++        inbound_skips(protected_lo, addu_pc) ||
+         (low_pc != 0u && inbound_skips(low_pc, addu_pc)) ||
+-        has_call_between(lui_pc, addu_pc)) {
++        has_call_between(protected_lo, addu_pc)) {
+         return false;
+     }
+-    // No other control transfer may intervene between the proven constant and
++    // No other control transfer may intervene between the proven definitions and
+     // the canonical suffix. The bounds BEQ is the sole exception.
+-    for (uint32_t pc = lui_pc + 4u; pc < sll_pc; pc += 4u) {
++    for (uint32_t pc = protected_lo + 4u; pc < sll_pc; pc += 4u) {
+         auto word = read(pc);
+         if (!word.has_value() ||
+             (pc != guard_pc && is_control(pc, *word))) {
+@@ -1096,8 +1122,8 @@ bool resolve_exact_bounded_jump_table(
+         bool direct = cf.kind == ExactCfKind::Branch ||
+                       cf.kind == ExactCfKind::Jump ||
+                       cf.kind == ExactCfKind::Jal;
+-        if (direct && cf.target > lui_pc && cf.target <= jr_pc &&
+-            (source < lui_pc || source > jr_pc) &&
++        if (direct && cf.target > protected_lo && cf.target <= jr_pc &&
++            (source < protected_lo || source > jr_pc) &&
+             !case_reachable.count(source)) {
+             return false;
+         }
+diff --git a/runtime/include/cpu_state.h b/runtime/include/cpu_state.h
+index 66c1b786..998bb595 100644
+--- a/runtime/include/cpu_state.h
++++ b/runtime/include/cpu_state.h
+@@ -74,6 +74,11 @@ typedef struct CPUState {
+  * Static recompiled code and the interpreter share host cycle state directly,
+  * so their barrier compiles to nothing. */
+ #ifdef PSX_OVERLAY_DLL_BUILD
++#ifdef _WIN32
++__declspec(dllexport)
++#else
++__attribute__((visibility("default")))
++#endif
+ void overlay_flush_cycles(void);
+ static inline void psx_store_cycle_barrier(void) { overlay_flush_cycles(); }
+ #else
+diff --git a/runtime/include/psx_cycles.h b/runtime/include/psx_cycles.h
+index 25ba1f3b..c686cfba 100644
+--- a/runtime/include/psx_cycles.h
++++ b/runtime/include/psx_cycles.h
+@@ -126,6 +126,11 @@ static inline void psx_advance_cycles(uint32_t cycles) {
+ /* Publish deferred charges (IRQ edge / MMIO / savestate). Overlay DLLs keep
+  * their pending total in the callback shim rather than these host globals. */
+ #if defined(PSX_OVERLAY_DLL_BUILD)
++#ifdef _WIN32
++__declspec(dllexport)
++#else
++__attribute__((visibility("default")))
++#endif
+ void overlay_flush_cycles(void);
+ static inline void psx_cyc_local_publish(void) { }
+ static inline void psx_cyc_batch_flush(void) { overlay_flush_cycles(); }
+diff --git a/runtime/src/disc_identity.cpp b/runtime/src/disc_identity.cpp
+index 79fe1d0a..24449c16 100644
+--- a/runtime/src/disc_identity.cpp
++++ b/runtime/src/disc_identity.cpp
+@@ -278,20 +278,27 @@ DiscIdentity identify_disc(const fs::path& path,
+         if (scan_ok) {
+             v.detected_serial = scan_boot_serial(scan);
+             if (v.expected_serial_given) {
+-                const std::string serial_id = uppercase_ascii(expected_serial);
+-                std::string exe_id = serial_id;
+-                if (serial_id.size() == 10 && serial_id[4] == '-')
+-                    exe_id = serial_id.substr(0, 4) + "_" +
+-                             serial_id.substr(5, 3) + "." +
+-                             serial_id.substr(8, 2);
+                 auto contains = [&](const std::string& needle) {
+                     if (needle.empty() || needle.size() > scan.size()) return false;
+                     return std::search(scan.begin(), scan.end(),
+                         needle.begin(), needle.end()) != scan.end();
+                 };
+-                v.serial_matches = contains(serial_id) || contains(exe_id) ||
+-                    (!v.detected_serial.empty() &&
+-                     v.detected_serial == serial_id);
++                std::stringstream ss(expected_serial);
++                std::string tok;
++                while (std::getline(ss, tok, ';')) {
++                    const std::string serial_id = uppercase_ascii(tok);
++                    if (serial_id.empty()) continue;
++                    std::string exe_id = serial_id;
++                    if (serial_id.size() == 10 && serial_id[4] == '-')
++                        exe_id = serial_id.substr(0, 4) + "_" +
++                                 serial_id.substr(5, 3) + "." +
++                                 serial_id.substr(8, 2);
++                    if (contains(serial_id) || contains(exe_id) ||
++                        (!v.detected_serial.empty() && v.detected_serial == serial_id)) {
++                        v.serial_matches = true;
++                        break;
++                    }
++                }
+             }
+         } else {
+             v.detail = "The CHD header is present, but its data track could not be scanned.";
+@@ -357,21 +364,26 @@ DiscIdentity identify_disc(const fs::path& path,
+         v.detected_serial = scan_boot_serial(scan);
+ 
+         if (v.expected_serial_given) {
+-            // Match either the game-id form (SCUS-94236) or the EXE form (SCUS_942.36).
+-            const std::string serial_id = uppercase_ascii(expected_serial);
+-            std::string exe_id = serial_id;  // SCUS-94236 -> SCUS_942.36
+-            if (serial_id.size() == 10 && serial_id[4] == '-')
+-                exe_id = serial_id.substr(0, 4) + "_" + serial_id.substr(5, 3) + "." +
+-                         serial_id.substr(8, 2);
+             auto contains = [&](const std::string& needle) {
+                 if (needle.empty() || needle.size() > scan.size()) return false;
+                 return std::search(scan.begin(), scan.end(), needle.begin(), needle.end()) !=
+                        scan.end();
+             };
+-            v.serial_matches = contains(serial_id) || contains(exe_id);
+-            if (!v.serial_matches && !v.detected_serial.empty() &&
+-                v.detected_serial == serial_id)
+-                v.serial_matches = true;  // boot line agrees even if the literal bytes differ
++            std::stringstream ss(expected_serial);
++            std::string tok;
++            while (std::getline(ss, tok, ';')) {
++                const std::string serial_id = uppercase_ascii(tok);
++                if (serial_id.empty()) continue;
++                std::string exe_id = serial_id;  // SCUS-94236 -> SCUS_942.36
++                if (serial_id.size() == 10 && serial_id[4] == '-')
++                    exe_id = serial_id.substr(0, 4) + "_" + serial_id.substr(5, 3) + "." +
++                             serial_id.substr(8, 2);
++                if (contains(serial_id) || contains(exe_id) ||
++                    (!v.detected_serial.empty() && v.detected_serial == serial_id)) {
++                    v.serial_matches = true;
++                    break;
++                }
++            }
+         }
+     } else {
+         v.detail = "The ISO header is present, but the image could not be scanned.";
+diff --git a/runtime/src/main.cpp b/runtime/src/main.cpp
+index 687af2ec..8cbb7183 100644
+--- a/runtime/src/main.cpp
++++ b/runtime/src/main.cpp
+@@ -217,89 +217,89 @@ extern "C" uint32_t memory_get_bios_checksum(void);
+ extern "C" void     dirty_ram_register_text_image(uint32_t phys_lo,
+                                                   const uint8_t *bytes,
+                                                   uint32_t len);
++#if defined(PSX_MULTI_REGION_DISPATCH)
++extern "C" void     psx_game_select_boot_exe(const char *boot_name,
++                                             uint32_t entry_pc);
++#endif
+ 
+ /* Arm the dirty-RAM text-image guard with the boot EXE bytes. The guard is
+  * load-bearing: dispatch native-safety (dirty_ram_text_native_ok) and the
+  * fntrace alternate game-start latch both key off the registered image, so
+  * every install must arm it — not just repo checkouts that happen to carry a
+  * loose EXE copy next to game.toml. Source order:
+- *   1. The local EXE file from game.toml (dev checkouts; recompiler input).
+- *   2. The boot EXE extracted from the mounted disc image (end-user installs
+- *      — the disc is the same bytes the BIOS loads, i.e. the true reference).
++ *   1. The boot EXE extracted from the mounted disc image (true hardware
++ *      reference — essential for multi-region builds where game.toml's local
++ *      exe_path only names one region's EXE).
++ *   2. The local EXE file from game.toml (EXE-only / disc-less dev runs).
+  * Registration passes ownership of the malloc'd buffer to memory.c. */
+ static void arm_text_image_guard(const std::string &exe_path,
+                                  uint32_t load_address,
+-                                 const std::string &disc_path) {
+-    const uint32_t phys_lo = load_address & 0x1FFFFFFFu;
+-    /* 1. Local EXE file (skip the 2048-byte PS-X EXE header). */
+-    if (!exe_path.empty()) {
+-        std::ifstream ef(exe_path, std::ios::binary | std::ios::ate);
+-        if (ef) {
+-            std::streamsize sz = ef.tellg();
+-            if (sz > 2048) {
+-                uint32_t img_len = (uint32_t)(sz - 2048);
+-                uint8_t *img = (uint8_t *)std::malloc(img_len);
+-                if (img) {
+-                    ef.seekg(2048, std::ios::beg);
+-                    if (ef.read((char *)img, img_len)) {
+-                        dirty_ram_register_text_image(phys_lo, img, img_len);
+-                        std::fprintf(stdout,
+-                            "psxrecomp: text image guard armed (0x%08X..0x%08X, local EXE)\n",
+-                            load_address, load_address + img_len);
+-                        return;
+-                    }
+-                    std::free(img);
+-                }
+-            }
++                                 const std::string &disc_path,
++                                 uint32_t *inout_entry_pc = nullptr) {
++    uint32_t phys_lo = load_address & 0x1FFFFFFFu;
++    auto parse_psx_exe_header = [&](const uint8_t *hdr, const char *label) {
++        if (std::memcmp(hdr, "PS-X EXE", 8) == 0) {
++            uint32_t pc0 = 0, t_addr = 0;
++            std::memcpy(&pc0, hdr + 0x10, sizeof(uint32_t));
++            std::memcpy(&t_addr, hdr + 0x18, sizeof(uint32_t));
++            if (t_addr != 0) {
++                load_address = t_addr;
++                phys_lo = t_addr & 0x1FFFFFFFu;
++            }
++            if (pc0 != 0 && inout_entry_pc) {
++                *inout_entry_pc = pc0;
++            }
++#if defined(PSX_MULTI_REGION_DISPATCH)
++            psx_game_select_boot_exe(label ? label : "", pc0);
++#else
++            (void)label;
++#endif
+         }
+-    }
+-    /* 2. Extract the boot EXE from the disc image. */
++    };
++    /* 1. Extract the boot EXE from the mounted disc image (authoritative). */
+     if (!disc_path.empty()) {
+         PS1::ISOReader iso;
+         if (iso.Open(disc_path)) {
+-            /* The boot filename: basename of the game.toml exe field (it names
+-             * the same file the recompiler consumed, which came off this disc);
+-             * fall back to the SYSTEM.CNF BOOT token for configs whose local
+-             * name differs from the disc name. */
+             std::string boot_name;
+-            if (!exe_path.empty()) {
+-                const size_t slash = exe_path.find_last_of("/\\");
+-                boot_name = (slash == std::string::npos)
+-                                ? exe_path : exe_path.substr(slash + 1);
+-            }
+             PS1::ISOFileEntry ent;
+-            if (boot_name.empty() || !iso.FindFile(boot_name, ent)) {
+-                /* SYSTEM.CNF: `BOOT = cdrom:\SCUS_944.23;1` */
+-                uint8_t cnf[2048] = {0};
+-                size_t n = iso.ReadFile("SYSTEM.CNF", cnf, sizeof(cnf) - 1);
+-                if (n > 0) {
+-                    std::string text((const char *)cnf, n);
+-                    std::string lower = text;
+-                    for (char &c : lower) c = (char)std::tolower((unsigned char)c);
+-                    const size_t key = lower.find("cdrom:");
+-                    if (key != std::string::npos) {
+-                        size_t j = key + 6;
+-                        while (j < text.size() && (text[j] == '\\' || text[j] == '/')) j++;
+-                        std::string tok;
+-                        while (j < text.size()) {
+-                            char c = text[j];
+-                            if (c == ';' || c == '\r' || c == '\n' || c == ' ' ||
+-                                c == '\t' || c == '\0') break;
+-                            tok += c; j++;
+-                            if (tok.size() > 64) break;
+-                        }
+-                        const size_t s2 = tok.find_last_of("\\/");
+-                        if (s2 != std::string::npos) tok = tok.substr(s2 + 1);
+-                        if (!tok.empty() && iso.FindFile(tok, ent)) boot_name = tok;
++            /* Read SYSTEM.CNF first so multi-region discs (SLUS vs SLES) always
++             * pick the mounted disc's actual BOOT executable. */
++            uint8_t cnf[2048] = {0};
++            size_t n = iso.ReadFile("SYSTEM.CNF", cnf, sizeof(cnf) - 1);
++            if (n > 0) {
++                std::string text((const char *)cnf, n);
++                std::string lower = text;
++                for (char &c : lower) c = (char)std::tolower((unsigned char)c);
++                const size_t key = lower.find("cdrom:");
++                if (key != std::string::npos) {
++                    size_t j = key + 6;
++                    while (j < text.size() && (text[j] == '\\' || text[j] == '/')) j++;
++                    std::string tok;
++                    while (j < text.size()) {
++                        char c = text[j];
++                        if (c == ';' || c == '\r' || c == '\n' || c == ' ' ||
++                            c == '\t' || c == '\0') break;
++                        tok += c; j++;
++                        if (tok.size() > 64) break;
+                     }
++                    const size_t s2 = tok.find_last_of("\\/");
++                    if (s2 != std::string::npos) tok = tok.substr(s2 + 1);
++                    if (!tok.empty() && iso.FindFile(tok, ent)) boot_name = tok;
+                 }
+             }
++            if (boot_name.empty() && !exe_path.empty()) {
++                const size_t slash = exe_path.find_last_of("/\\");
++                std::string cand = (slash == std::string::npos)
++                                       ? exe_path : exe_path.substr(slash + 1);
++                if (!cand.empty() && iso.FindFile(cand, ent)) boot_name = cand;
++            }
+             if (!boot_name.empty() && iso.FindFile(boot_name, ent) &&
+                 ent.size > 2048) {
+                 uint8_t *file = (uint8_t *)std::malloc(ent.size);
+                 if (file) {
+                     size_t got = iso.ReadFile(boot_name, file, ent.size);
+                     if (got > 2048) {
++                        parse_psx_exe_header(file, boot_name.c_str());
+                         uint32_t img_len = (uint32_t)(got - 2048);
+                         uint8_t *img = (uint8_t *)std::malloc(img_len);
+                         if (img) {
+@@ -318,6 +318,33 @@ static void arm_text_image_guard(const std::string &exe_path,
+             }
+         }
+     }
++    /* 2. Local EXE file fallback (skip the 2048-byte PS-X EXE header). */
++    if (!exe_path.empty()) {
++        std::ifstream ef(exe_path, std::ios::binary | std::ios::ate);
++        if (ef) {
++            std::streamsize sz = ef.tellg();
++            if (sz > 2048) {
++                uint8_t hdr[2048];
++                ef.seekg(0, std::ios::beg);
++                if (ef.read((char *)hdr, 2048)) {
++                    parse_psx_exe_header(hdr, exe_path.c_str());
++                }
++                uint32_t img_len = (uint32_t)(sz - 2048);
++                uint8_t *img = (uint8_t *)std::malloc(img_len);
++                if (img) {
++                    ef.seekg(2048, std::ios::beg);
++                    if (ef.read((char *)img, img_len)) {
++                        dirty_ram_register_text_image(phys_lo, img, img_len);
++                        std::fprintf(stdout,
++                            "psxrecomp: text image guard armed (0x%08X..0x%08X, local EXE)\n",
++                            load_address, load_address + img_len);
++                        return;
++                    }
++                    std::free(img);
++                }
++            }
++        }
++    }
+     std::fprintf(stdout,
+         "psxrecomp: WARNING: text image guard NOT armed (no local EXE, no disc "
+         "boot EXE) — native text dispatch will be conservative\n");
+@@ -2283,18 +2310,29 @@ static std::unordered_map<std::string, std::string> g_disc_serials;
+  * for every single-disc title and every port that predates the key, which
+  * therefore keep the flat [netplay] required_disc_fp behaviour exactly. */
+ static std::unordered_map<std::string, std::string> g_disc_netplay_fps;
++static std::string g_alt_serials_joined;
+ 
+ static std::string uppercase_ascii(std::string s);
+ 
++static std::string append_alt_serials(const std::string& base) {
++    if (g_alt_serials_joined.empty()) return base;
++    if (base.empty()) return g_alt_serials_joined;
++    if (base.find(';') != std::string::npos) return base;
++    return base + ";" + g_alt_serials_joined;
++}
++
+ /* The serial THIS image is expected to carry: the set's per-disc value when
+  * the game declared one, the game's own id otherwise. An image that belongs
+  * to a declared set but has no serial listed is returned ungated (""), never
+- * gated against another disc's number. */
++ * gated against another disc's number (unless alt_ids are declared for a
++ * multi-region unified build). */
+ static std::string expected_serial_for_disc(const std::filesystem::path& disc,
+                                             const std::string& fallback) {
+-    if (g_disc_serials.empty()) return fallback;
++    if (g_disc_serials.empty()) return append_alt_serials(fallback);
+     const auto it = g_disc_serials.find(uppercase_ascii(disc.stem().string()));
+-    return it != g_disc_serials.end() ? it->second : std::string();
++    if (it != g_disc_serials.end()) return it->second;
++    if (!g_alt_serials_joined.empty()) return append_alt_serials(fallback);
++    return std::string();
+ }
+ 
+ static std::string uppercase_ascii(std::string s) {
+@@ -11293,6 +11331,12 @@ int main(int argc, char** argv) {
+             const auto gc = PSXRecompV4::load_game_config(game_config_path);
+             game_name = gc.name;
+             game_id   = gc.id;
++            g_alt_serials_joined.clear();
++            for (const auto& aid : gc.alt_ids) {
++                if (aid.empty()) continue;
++                if (!g_alt_serials_joined.empty()) g_alt_serials_joined += ";";
++                g_alt_serials_joined += aid;
++            }
+             game_region = gc.region;
+             game_players = gc.players;
+             apply_offline_pad_count(game_players, multitap_enabled);
+@@ -13555,8 +13599,8 @@ session_reboot:
+ #endif
+ 
+         const auto ident = PSXRecompV4::identify_disc(
+-            disc_path_str, expected_serial, expected_crc,
+-            has_crc, /*compute_crc*/false);
++            disc_path_str, expected_serial_for_disc(disc_path_str, expected_serial),
++            expected_crc, has_crc, /*compute_crc*/false);
+         if (ident.region == "PAL") {
+             cdrom_set_disc_scex("SCEE");
+ 
+@@ -13576,7 +13620,7 @@ session_reboot:
+      * the local EXE file (dev checkouts) and the disc image (every install). */
+     if (game_config_path)
+         arm_text_image_guard(text_guard_exe_path, text_guard_load_addr,
+-                             disc_path_str);
++                             disc_path_str, &game_entry_pc);
+     /* Executable/overlay patches from enabled mods, applied once the guard is
+      * armed so a patched image is never mistaken for a divergent one. */
+     mod_runtime_enable_disc_patches();
+diff --git a/tools/compile_overlays.py b/tools/compile_overlays.py
+index e21c4063..3aabfda7 100644
+--- a/tools/compile_overlays.py
++++ b/tools/compile_overlays.py
+@@ -902,28 +902,69 @@ def _find_jump_table_targets(data: bytes, load_addr: int, size: int,
+         return set()
+ 
+     # The bound must guard this exact index on the sole fallthrough into SLL.
+-    sltiu_pc = sll_pc - 12
+-    branch_pc = sll_pc - 8
+-    if _word_at(data, load_addr, sll_pc - 4) != 0:
++    # Supports Psy-Q 4.x scheduling where LUI/ADDIU sit between BEQZ and SLL
++    # (including LUI in BEQZ's delay slot) and up to 3 non-CF instructions sit
++    # between SLTIU and BEQZ.
++    branch_pc = None
++    branch_word = None
++    for back in (8, 12, 16, 20):
++        cand_pc = sll_pc - back
++        if cand_pc < entry + 4:
++            break
++        cand_w = _word_at(data, load_addr, cand_pc)
++        if cand_w is None:
++            return set()
++        if _is_control_flow(cand_w):
++            branch_pc = cand_pc
++            branch_word = cand_w
++            break
++    if branch_pc is None or branch_word is None:
+         return set()
+-    sltiu_word = _word_at(data, load_addr, sltiu_pc)
+-    branch_word = _word_at(data, load_addr, branch_pc)
+-    if sltiu_word is None or ((sltiu_word >> 26) & 0x3F) != 0x0B \
+-            or ((sltiu_word >> 21) & 0x1F) != index_reg:
++    if branch_pc >= entry + 4 and _is_control_flow(_word_at(data, load_addr, branch_pc - 4)):
+         return set()
+-    guard_reg = (sltiu_word >> 16) & 0x1F
+-    table_count = sltiu_word & 0xFFFF
+-    if not guard_reg or not (1 <= table_count < 512):
+-        return set()
+-    if branch_word is None or ((branch_word >> 26) & 0x3F) != 0x04:
++    if ((branch_word >> 26) & 0x3F) != 0x04:
+         return set()
+     branch_rs = (branch_word >> 21) & 0x1F
+     branch_rt = (branch_word >> 16) & 0x1F
+-    if {branch_rs, branch_rt} != {0, guard_reg}:
++    guard_reg = branch_rt if branch_rs == 0 else branch_rs
++    if not guard_reg or (branch_rs != 0 and branch_rt != 0):
++        return set()
++    for pc in range(branch_pc + 4, sll_pc, 4):
++        w = _word_at(data, load_addr, pc)
++        if w is None or _is_control_flow(w) or _instruction_writes_gpr(w, index_reg):
++            return set()
++
++    sltiu_pc = None
++    sltiu_word = None
++    for back in (4, 8, 12, 16):
++        cand_pc = branch_pc - back
++        if cand_pc < entry:
++            break
++        cand_w = _word_at(data, load_addr, cand_pc)
++        if cand_w is None or _is_control_flow(cand_w):
++            return set()
++        if _instruction_writes_gpr(cand_w, guard_reg):
++            sltiu_pc = cand_pc
++            sltiu_word = cand_w
++            break
++    if sltiu_pc is None or sltiu_word is None:
++        return set()
++    if sltiu_pc >= entry + 4 and _is_control_flow(_word_at(data, load_addr, sltiu_pc - 4)):
++        return set()
++    if ((sltiu_word >> 26) & 0x3F) != 0x0B or ((sltiu_word >> 21) & 0x1F) != index_reg:
+         return set()
++    if ((sltiu_word >> 16) & 0x1F) != guard_reg:
++        return set()
++    table_count = sltiu_word & 0xFFFF
++    if not (1 <= table_count < 512):
++        return set()
++    for pc in range(sltiu_pc + 4, branch_pc, 4):
++        w = _word_at(data, load_addr, pc)
++        if w is None or _instruction_writes_gpr(w, index_reg):
++            return set()
+     reject_target = _branch_target(branch_pc, branch_word)
+     if (not (entry <= reject_target < hard_cap) or
+-            sll_pc <= reject_target < jr_pc + 8):
++            branch_pc + 8 <= reject_target < jr_pc + 8):
+         return set()
+ 
+     def nearest_writer(reg: int, before: int):
+@@ -962,16 +1003,19 @@ def _find_jump_table_targets(data: bytes, load_addr: int, size: int,
+     else:
+         return set()
+ 
+-    # Calls could clobber the proven constant.  Other branches could enter the
+-    # suffix through an unproved path.  The one exact bounds branch is allowed.
+-    for pc in range(constant_pc + 4, sll_pc, 4):
++    protected_lo = min(sltiu_pc, constant_pc)
++    for pc in range(protected_lo + 4, sll_pc, 4):
+         word = _word_at(data, load_addr, pc)
+         if word is None:
+             return set()
+         if _is_control_flow(word) and pc != branch_pc:
+             return set()
+     predecessor = _word_at(data, load_addr, constant_pc - 4)
+-    if constant_pc >= entry + 4 and _is_control_flow(predecessor):
++    if (constant_pc >= entry + 4 and constant_pc != branch_pc + 4 and
++            _is_control_flow(predecessor)):
++        return set()
++    if table_def_pc != constant_pc and table_def_pc >= entry + 4 and \
++            _is_control_flow(_word_at(data, load_addr, table_def_pc - 4)):
+         return set()
+     table_base = (table_base + lw_offset) & 0xFFFFFFFF
+     table_end = table_base + table_count * 4
+@@ -1031,8 +1075,8 @@ def _find_jump_table_targets(data: bytes, load_addr: int, size: int,
+             return set()
+         kind, target = _classify_cf(source, source_word)
+         if (kind in ('branch', 'j', 'jal') and
+-                constant_pc < target <= jr_pc and
+-                not (constant_pc <= source <= jr_pc) and
++                protected_lo < target <= jr_pc and
++                not (protected_lo <= source <= jr_pc) and
+                 source not in case_reachable):
+             return set()
+     if proof_out is not None:
+@@ -2165,10 +2209,18 @@ def patch_generated_c(src: str, load_addr: int, size: int) -> str:
+     else:
+         src = src[:last_inc] + '\n' + DISPATCH_PREAMBLE + src[last_inc:]
+ 
+-    # 2. Remove out-of-range forward declarations
++    # 2. Remove out-of-range forward declarations; mark kept ones dllexport
++    #    so Clang/llvm-mingw never errors when an in-overlay forward call
++    #    precedes the dllexport definition.
+     def drop_extern(m):
+         addr = int(m.group(1), 16)
+-        return '' if not in_overlay(addr) else m.group(0)
++        if not in_overlay(addr):
++            return ''
++        return (
++            '#ifdef _WIN32\n__declspec(dllexport)\n#else\n'
++            '__attribute__((visibility("default")))\n#endif\n'
++            + m.group(0)
++        )
+     src = re.sub(r'^void func_([0-9A-Fa-f]{8})\(CPUState\* cpu\);\n',
+                  drop_extern, src, flags=re.MULTILINE)
+ 

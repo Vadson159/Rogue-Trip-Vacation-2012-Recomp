@@ -1,0 +1,1227 @@
+{
+  "suite": "stages_fullrus",
+  "disc": "_game_files/Rogue Trip - Vacation 2012 (FullRUS)/Rogue Trip - Vacation 2012 (FullRUS).cue",
+  "stages": [
+    {
+      "stage_index": 0,
+      "name": "AIRPORT",
+      "description": "XLAX / Airport",
+      "expected_ovr_id": "0x05",
+      "actual_ovr_id": "0x00000005",
+      "dispatch_native_delta": 53722,
+      "screenshot": "suite1_stages_fullrus/stage_00_AIRPORT.png",
+      "telemetry": {
+        "frame": 3995,
+        "ovr_id_ram": "0x00000005",
+        "level_index_ram": 0,
+        "dispatch_native": 352400,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 824,
+        "overlay_last_crc": "0x5A21C94D",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 2931915,
+        "spu_nonzero_frames": 1963552,
+        "spu_key_on_count": 94,
+        "spu_peak": 24509,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 3989
+      }
+    },
+    {
+      "stage_index": 1,
+      "name": "HOLLY",
+      "description": "Hollywood / Blowtorch (Main-EXE Resident)",
+      "expected_ovr_id": "RESIDENT_MAIN_EXE",
+      "actual_ovr_id": "0x0000000F",
+      "dispatch_native_delta": 110172,
+      "screenshot": "suite1_stages_fullrus/stage_01_HOLLY.png",
+      "telemetry": {
+        "frame": 6722,
+        "ovr_id_ram": "0x0000000F",
+        "level_index_ram": 1,
+        "dispatch_native": 614012,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 821,
+        "overlay_last_crc": "0xD78F4FFA",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 4936260,
+        "spu_nonzero_frames": 3522062,
+        "spu_key_on_count": 171,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 6716
+      }
+    },
+    {
+      "stage_index": 2,
+      "name": "DC",
+      "description": "The Maul / Washington D.C.",
+      "expected_ovr_id": "0x04",
+      "actual_ovr_id": "0x00000004",
+      "dispatch_native_delta": 116934,
+      "screenshot": "suite1_stages_fullrus/stage_02_DC.png",
+      "telemetry": {
+        "frame": 9235,
+        "ovr_id_ram": "0x00000004",
+        "level_index_ram": 2,
+        "dispatch_native": 874782,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 1286,
+        "overlay_last_crc": "0x33E85000",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 6786990,
+        "spu_nonzero_frames": 4982816,
+        "spu_key_on_count": 249,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 9234
+      }
+    },
+    {
+      "stage_index": 3,
+      "name": "A51",
+      "description": "Area 51",
+      "expected_ovr_id": "0x06",
+      "actual_ovr_id": "0x00000006",
+      "dispatch_native_delta": 116737,
+      "screenshot": "suite1_stages_fullrus/stage_03_A51.png",
+      "telemetry": {
+        "frame": 11818,
+        "ovr_id_ram": "0x00000006",
+        "level_index_ram": 3,
+        "dispatch_native": 1136513,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 1611,
+        "overlay_last_crc": "0x969A536C",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 8681085,
+        "spu_nonzero_frames": 6493582,
+        "spu_key_on_count": 342,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 11811
+      }
+    },
+    {
+      "stage_index": 4,
+      "name": "FUN",
+      "description": "Funtopia (Bonus Arena)",
+      "expected_ovr_id": "0x0C",
+      "actual_ovr_id": "0x0000000C",
+      "dispatch_native_delta": 104617,
+      "screenshot": "suite1_stages_fullrus/stage_04_FUN.png",
+      "telemetry": {
+        "frame": 14384,
+        "ovr_id_ram": "0x0000000C",
+        "level_index_ram": 4,
+        "dispatch_native": 1386687,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 1635,
+        "overlay_last_crc": "0x7E49CF31",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 10569300,
+        "spu_nonzero_frames": 8073407,
+        "spu_key_on_count": 512,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 14382
+      }
+    },
+    {
+      "stage_index": 5,
+      "name": "VEGAS",
+      "description": "Las Vegas",
+      "expected_ovr_id": "0x07",
+      "actual_ovr_id": "0x00000007",
+      "dispatch_native_delta": 121282,
+      "screenshot": "suite1_stages_fullrus/stage_05_VEGAS.png",
+      "telemetry": {
+        "frame": 16980,
+        "ovr_id_ram": "0x00000007",
+        "level_index_ram": 5,
+        "dispatch_native": 1653374,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 1974,
+        "overlay_last_crc": "0xC52BB269",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 12475890,
+        "spu_nonzero_frames": 9589299,
+        "spu_key_on_count": 624,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 16974
+      }
+    },
+    {
+      "stage_index": 5,
+      "name": "VEGAS_BOSS_BIGDADDY",
+      "description": "Las Vegas — Boss 1 (Big Daddy)",
+      "expected_ovr_id": "0x07",
+      "actual_ovr_id": "0x00000007",
+      "dispatch_native_delta": 116299,
+      "screenshot": "suite1_stages_fullrus/stage_05_VEGAS_BOSS_BIGDADDY.png",
+      "telemetry": {
+        "frame": 19552,
+        "ovr_id_ram": "0x00000007",
+        "level_index_ram": 5,
+        "dispatch_native": 1914962,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 1971,
+        "overlay_last_crc": "0xC52BB269",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 14361900,
+        "spu_nonzero_frames": 11097059,
+        "spu_key_on_count": 697,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 19546
+      }
+    },
+    {
+      "stage_index": 6,
+      "name": "GREEK",
+      "description": "Metro / Colosseum (Bonus Arena)",
+      "expected_ovr_id": "0x0D",
+      "actual_ovr_id": "0x0000000D",
+      "dispatch_native_delta": 116272,
+      "screenshot": "suite1_stages_fullrus/stage_06_GREEK.png",
+      "telemetry": {
+        "frame": 22085,
+        "ovr_id_ram": "0x0000000D",
+        "level_index_ram": 6,
+        "dispatch_native": 2175964,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 2049,
+        "overlay_last_crc": "0x8F6EE9D2",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 16231005,
+        "spu_nonzero_frames": 12577616,
+        "spu_key_on_count": 749,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 22083
+      }
+    },
+    {
+      "stage_index": 7,
+      "name": "SOCAL",
+      "description": "SoCal",
+      "expected_ovr_id": "0x08",
+      "actual_ovr_id": "0x00000008",
+      "dispatch_native_delta": 122917,
+      "screenshot": "suite1_stages_fullrus/stage_07_SOCAL.png",
+      "telemetry": {
+        "frame": 24595,
+        "ovr_id_ram": "0x00000008",
+        "level_index_ram": 7,
+        "dispatch_native": 2442285,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 2341,
+        "overlay_last_crc": "0xA0A20BEF",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 18075855,
+        "spu_nonzero_frames": 14045701,
+        "spu_key_on_count": 865,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 24594
+      }
+    },
+    {
+      "stage_index": 8,
+      "name": "PARK",
+      "description": "Redwood / Park",
+      "expected_ovr_id": "0x09",
+      "actual_ovr_id": "0x00000009",
+      "dispatch_native_delta": 115843,
+      "screenshot": "suite1_stages_fullrus/stage_08_PARK.png",
+      "telemetry": {
+        "frame": 27128,
+        "ovr_id_ram": "0x00000009",
+        "level_index_ram": 8,
+        "dispatch_native": 2702375,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 2474,
+        "overlay_last_crc": "0xA3C9BAE5",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 19934670,
+        "spu_nonzero_frames": 15521896,
+        "spu_key_on_count": 953,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 27124
+      }
+    },
+    {
+      "stage_index": 9,
+      "name": "SANFRAN",
+      "description": "San Francisco / Boss 2 (Goliath)",
+      "expected_ovr_id": "0x0B",
+      "actual_ovr_id": "0x0000000B",
+      "dispatch_native_delta": 117251,
+      "screenshot": "suite1_stages_fullrus/stage_09_SANFRAN.png",
+      "telemetry": {
+        "frame": 29664,
+        "ovr_id_ram": "0x0000000B",
+        "level_index_ram": 9,
+        "dispatch_native": 2964248,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 2630,
+        "overlay_last_crc": "0x2F45681A",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 21801570,
+        "spu_nonzero_frames": 17001020,
+        "spu_key_on_count": 1047,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 29662
+      }
+    },
+    {
+      "stage_index": 10,
+      "name": "GHOST",
+      "description": "Gulch / Ghost Town (Bonus Arena)",
+      "expected_ovr_id": "0x0A",
+      "actual_ovr_id": "0x0000000A",
+      "dispatch_native_delta": 114516,
+      "screenshot": "suite1_stages_fullrus/stage_10_GHOST.png",
+      "telemetry": {
+        "frame": 32181,
+        "ovr_id_ram": "0x0000000A",
+        "level_index_ram": 10,
+        "dispatch_native": 3222233,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 2713,
+        "overlay_last_crc": "0x4F61EC1D",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 23651565,
+        "spu_nonzero_frames": 18514688,
+        "spu_key_on_count": 1210,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 32179
+      }
+    },
+    {
+      "stage_index": 11,
+      "name": "NUKE_PHASE1",
+      "description": "Fallout / Nuke — Boss Duo (Big Daddy + Goliath)",
+      "expected_ovr_id": "0x0E",
+      "actual_ovr_id": "0x0000000E",
+      "dispatch_native_delta": 111436,
+      "screenshot": "suite1_stages_fullrus/stage_11_NUKE_PHASE1.png",
+      "telemetry": {
+        "frame": 34717,
+        "ovr_id_ram": "0x0000000E",
+        "level_index_ram": 11,
+        "dispatch_native": 3478373,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 3217,
+        "overlay_last_crc": "0xCC56F25C",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 25513320,
+        "spu_nonzero_frames": 19993055,
+        "spu_key_on_count": 1276,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 34715
+      }
+    },
+    {
+      "stage_index": 11,
+      "name": "NUKE_FINAL_DADDYO",
+      "description": "Fallout / Nuke — Final Boss (Daddy-O)",
+      "expected_ovr_id": "0x0E",
+      "actual_ovr_id": "0x0000000E",
+      "dispatch_native_delta": 107669,
+      "screenshot": "suite1_stages_fullrus/stage_11_NUKE_FINAL_DADDYO.png",
+      "telemetry": {
+        "frame": 37283,
+        "ovr_id_ram": "0x0000000E",
+        "level_index_ram": 11,
+        "dispatch_native": 3730877,
+        "dispatch_interp_fallback": 1805583,
+        "overlay_registered": 3216,
+        "overlay_last_crc": "0xF82B9C2A",
+        "overlay_interp_pcs": [],
+        "game_code_interp_pcs": [],
+        "non_kernel_interp_pcs": [
+          {
+            "pc": "0x0018017C",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180174",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801B8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B0",
+            "hits": 1,
+            "insns": 1,
+            "entries": 1
+          },
+          {
+            "pc": "0x001801A8",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x00180178",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801BC",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801B4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          },
+          {
+            "pc": "0x001801A4",
+            "hits": 1,
+            "insns": 1,
+            "entries": 0
+          }
+        ],
+        "spu_render_frames": 27398595,
+        "spu_nonzero_frames": 21507497,
+        "spu_key_on_count": 1352,
+        "spu_peak": 24510,
+        "spu_cd_push_frames": 0,
+        "audio_pump_calls": 37277
+      }
+    }
+  ],
+  "boot_telemetry": {
+    "frame": 2140,
+    "ovr_id_ram": "0x0000000F",
+    "level_index_ram": 0,
+    "dispatch_native": 159595,
+    "dispatch_interp_fallback": 1805583,
+    "overlay_registered": 475,
+    "overlay_last_crc": "0xD78F4FFA",
+    "overlay_interp_pcs": [],
+    "game_code_interp_pcs": [],
+    "non_kernel_interp_pcs": [
+      {
+        "pc": "0x0018017C",
+        "hits": 1,
+        "insns": 1,
+        "entries": 0
+      },
+      {
+        "pc": "0x00180174",
+        "hits": 1,
+        "insns": 1,
+        "entries": 1
+      },
+      {
+        "pc": "0x001801B8",
+        "hits": 1,
+        "insns": 1,
+        "entries": 0
+      },
+      {
+        "pc": "0x001801B0",
+        "hits": 1,
+        "insns": 1,
+        "entries": 1
+      },
+      {
+        "pc": "0x001801A8",
+        "hits": 1,
+        "insns": 1,
+        "entries": 0
+      },
+      {
+        "pc": "0x00180178",
+        "hits": 1,
+        "insns": 1,
+        "entries": 0
+      },
+      {
+        "pc": "0x001801BC",
+        "hits": 1,
+        "insns": 1,
+        "entries": 0
+      },
+      {
+        "pc": "0x001801B4",
+        "hits": 1,
+        "insns": 1,
+        "entries": 0
+      },
+      {
+        "pc": "0x001801A4",
+        "hits": 1,
+        "insns": 1,
+        "entries": 0
+      }
+    ],
+    "spu_render_frames": 1565550,
+    "spu_nonzero_frames": 1110994,
+    "spu_key_on_count": 33,
+    "spu_peak": 22566,
+    "spu_cd_push_frames": 0,
+    "audio_pump_calls": 2138
+  }
+}

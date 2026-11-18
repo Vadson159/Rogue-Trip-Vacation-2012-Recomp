@@ -3,6 +3,7 @@ set -euo pipefail
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
 root=$PWD
 version=$(cat VERSION)
+bash scripts/apply-patches.sh
 : "${APPIMAGETOOL:=$root/build-tools/appimagetool.AppImage}"
 cmake -S . -B build-setup -G Ninja -DCMAKE_BUILD_TYPE=Release \
     -DPSXRECOMP_FORCE_SETUP_HOST=ON -DPSXRECOMP_ALLOW_NO_BIOS=ON \

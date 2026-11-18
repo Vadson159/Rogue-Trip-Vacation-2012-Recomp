@@ -11,43 +11,66 @@ endif()
 
 project(RogueTripRecomp LANGUAGES C CXX)
 
-# --- Opt-in product surfaces (OFF by default in the framework) -------------
-# Scaffold prompts / flags fill these. Without recomp-ui, PSX_RECOMP_UI is OFF.
-# Setup-host CI requires WIZARD_CMAKE_BLOCK / ENABLE_SETUP_WIZARD (FORCE_SETUP_HOST
-# alone does not open first-run / Generate & rebuild).
 set(PSX_RECOMP_UI ON CACHE BOOL "Launcher" FORCE)
-
 set(PSX_SETUP_WIZARD ON CACHE BOOL "Setup wizard" FORCE)
 set(PSX_REWIND OFF CACHE BOOL "Rewind requires the optional rollback backend")
 include("${PSXRECOMP_ROOT}/runtime/runtime.cmake")
 
-# This project's own mod catalog. The FRAMEWORK stages it -- together with its
-# builtin psx.* packages -- into <exe-dir>/mods/bundled, and refuses to
-# configure if a catalog exists here but is not declared. Never copy it by
-# hand: five titles did, and framework 4cc04be3's rename of the staged
-# directory broke all five silently (bead beads-eio.3.101).
 set(PSX_PRELOADED_MODS "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded")
 if(NOT IS_DIRECTORY "${PSX_PRELOADED_MODS}")
     set(PSX_PRELOADED_MODS "NONE")
 endif()
 
-psxrecomp_add_game_runtime(psx-runtime
-    PRELOADED_MODS_DIR "${PSX_PRELOADED_MODS}"
+set(_RT_US_DISPATCH "${CMAKE_CURRENT_SOURCE_DIR}/generated/us/SLUS_006.43_dispatch.c")
+set(_RT_EU_DISPATCH "${CMAKE_CURRENT_SOURCE_DIR}/generated/eu/SLES_014.17_dispatch.c")
+set(_RT_US_REMAP    "${CMAKE_CURRENT_SOURCE_DIR}/generated/us_remap.h")
+set(_RT_EU_REMAP    "${CMAKE_CURRENT_SOURCE_DIR}/generated/eu_remap.h")
 
+if(EXISTS "${_RT_US_DISPATCH}" AND EXISTS "${_RT_EU_DISPATCH}" AND
+   EXISTS "${_RT_US_REMAP}"    AND EXISTS "${_RT_EU_REMAP}" AND
+   NOT PSXRECOMP_FORCE_SETUP_HOST)
+    message(STATUS "RogueTripRecomp: Unified multi-region build (SLUS-00643 US/RUS + SLES-01417 Europe)")
+    file(GLOB _RT_US_SHARDS "${CMAKE_CURRENT_SOURCE_DIR}/generated/us/SLUS_006.43_full_*.c")
+    file(GLOB _RT_EU_SHARDS "${CMAKE_CURRENT_SOURCE_DIR}/generated/eu/SLES_014.17_full_*.c")
 
-    ENABLE_SETUP_WIZARD
-    WINDOW_TITLE "Rogue Trip Recompiled"
-    DEFAULT_GAME_CONFIG_PATH "game.toml"
-    MAX_PLAYERS 2
+    set_source_files_properties(${_RT_US_SHARDS} "${_RT_US_DISPATCH}" PROPERTIES
+        COMPILE_OPTIONS "-include;${_RT_US_REMAP}")
+    set_source_files_properties(${_RT_EU_SHARDS} "${_RT_EU_DISPATCH}" PROPERTIES
+        COMPILE_OPTIONS "-include;${_RT_EU_REMAP}")
 
+    psxrecomp_add_game_runtime(psx-runtime
+        PRELOADED_MODS_DIR "${PSX_PRELOADED_MODS}"
+        ENABLE_SETUP_WIZARD
+        WINDOW_TITLE "Rogue Trip Recompiled"
+        DEFAULT_GAME_CONFIG_PATH "game.toml"
+        MAX_PLAYERS 2
+        GEN_MARKER "multi_region_dispatch.c"
+        GEN_FULL_GLOB
+            "generated/us/SLUS_006.43_full_*.c"
+            "generated/us/SLUS_006.43_dispatch.c"
+            "generated/eu/SLES_014.17_full_*.c"
+            "generated/eu/SLES_014.17_dispatch.c"
+        CODEGEN_SETUP_SOURCES codegen_setup.c
+    )
+    target_compile_definitions(psx-runtime PRIVATE PSX_MULTI_REGION_DISPATCH=1)
+    set_property(SOURCE
+        "${PSXRECOMP_ROOT}/runtime/src/game_dispatch_compat.c"
+        APPEND PROPERTY COMPILE_DEFINITIONS
+        PSX_GAME_DISPATCH_HAS_NATIVE_OK=1
+        PSX_GAME_DISPATCH_HAS_NATIVE_OK_FULL=1)
+else()
+    psxrecomp_add_game_runtime(psx-runtime
+        PRELOADED_MODS_DIR "${PSX_PRELOADED_MODS}"
+        ENABLE_SETUP_WIZARD
+        WINDOW_TITLE "Rogue Trip Recompiled"
+        DEFAULT_GAME_CONFIG_PATH "game.toml"
+        MAX_PLAYERS 2
+        GEN_MARKER "generated/SLUS_006.43_dispatch.c"
+        GEN_FULL_GLOB "generated/SLUS_006.43_full_*.c"
+        CODEGEN_SETUP_SOURCES codegen_setup.c
+    )
+endif()
 
-    GEN_MARKER "generated/SLUS_006.43_dispatch.c"
-    GEN_FULL_GLOB "generated/SLUS_006.43_full_*.c"
-    CODEGEN_SETUP_SOURCES codegen_setup.c
-)
-
-# Stage runtime configs next to the exe for direct build/ launches. Only copy
-# files that exist — never fail POST_BUILD when game_options.toml is absent.
 foreach(_PSX_RUNTIME_CONFIG game.toml game_options.toml)
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${_PSX_RUNTIME_CONFIG}")
         add_custom_command(TARGET psx-runtime POST_BUILD

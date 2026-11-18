@@ -1,0 +1,19 @@
+psxrecomp: idle_skip disabled
+psxrecomp: overlay_region_floor = 0x1C3A20 (game text end), text_image_lo = 0xEFA20
+psxrecomp: loaded game config [workspace]\RogueTripRecomp\build-relwithdebinfo\game.toml (Rogue Trip - Vacation 2012, SLUS-00643)
+psxrecomp: additive overlay capture store = [workspace]\RogueTripRecomp\build-relwithdebinfo\overlay_captures.json (+ .d history)
+psxrecomp: tcc tier using bundled toolchain ([workspace]\RogueTripRecomp\build-relwithdebinfo\overlay_toolchain)
+psxrecomp: overlay autocompile interpreter: [workspace]\RogueTripRecomp\build-relwithdebinfo\overlay_toolchain\python\python.exe
+psxrecomp: overlay autocompile enabled (tcc); cache=[workspace]\RogueTripRecomp\build-relwithdebinfo\cache; captures=[workspace]\RogueTripRecomp\build-relwithdebinfo\overlay_captures.json
+psxrecomp runtime: loading BIOS from [workspace]\RogueTripRecomp\build-relwithdebinfo\bios/openbios.bin
+psxrecomp: renderer = opengl (opengl)
+psxrecomp: renderer backend requested: opengl
+psxrecomp: disc region NTSC-U (serial SLUS-00643)
+roguetrip: selected native backend SLUS_006.43 (US / FullRUS / Rus NTSC, entry=0x801549B0)
+psxrecomp: text image guard armed (0x800EFA20..0x801C3A20, disc SLUS_006.43)
+psxrecomp: debug server LISTENING on 127.0.0.1:4375
+psxrecomp: headless frontend enabled
+psxrecomp: bios_hle kernel-call tier unavailable on OPENBIOS (no DeliverEvent anchor); kernel calls stay LLE
+psxrecomp: bios_backend=LLE (recompiled BIOS)  bios_boot=HLE (shell skipped)  image=OPENBIOS
+psxrecomp runtime: executing from PC=0xBFC00000
+psxrecomp: thread scheduler = HLE (deterministic TCB) (PSX_HLE_SCHEDULER)

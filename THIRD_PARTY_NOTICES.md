@@ -5,7 +5,8 @@ PlayStation MIPS code into native C and provide the PS1 hardware runtime.
 PSXRecomp is distributed under **PolyForm Noncommercial License 1.0.0**, including
 its upstream clarification and commercial contact. The root `LICENSE` preserves
 that text and notice and applies the same terms to this project's contributions,
-except the launcher patch described below.
+including [the PSXRecomp multi-region patch](patches/psxrecomp-multi-region.patch).
+The launcher patch uses the MIT License.
 
 - Source: https://github.com/mstan/psxrecomp
 - License: [psxrecomp/LICENSE](psxrecomp/LICENSE)

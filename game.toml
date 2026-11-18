@@ -1,32 +1,53 @@
-# Autofilled by tools/new_project_layout/probe_disc.py from your legal dump.
-# Review before shipping. Runtime quirks / overlay seeds still need hand work.
+# Unified Multi-Region configuration for Rogue Trip: Vacation 2012 Recompiled
+# Supports:
+#   - SLUS-00643 (NTSC-U 60 Hz: FullRUS, Rus, and stock USA)
+#   - SLES-01417 (PAL 50 Hz: Europe)
 
 [game]
 name = "Rogue Trip - Vacation 2012"
 id = "SLUS-00643"
+alt_ids = ["SLES-01417"]
 players = 2
 exe = "disc/SLUS_006.43"
-disc = "disc/Rogue Trip - Vacation 2012 (USA).cue"
+disc = "../_game_files/Rogue Trip - Vacation 2012 (FullRUS)/Rogue Trip - Vacation 2012 (FullRUS).cue"
+discs = [
+  "../_game_files/Rogue Trip - Vacation 2012 (FullRUS)/Rogue Trip - Vacation 2012 (FullRUS).cue",
+  "../_game_files/Rogue Trip - Vacation 2012 (Rus)/Rogue Trip - Vacation 2012 (Rus).cue",
+  "../_game_files/Rogue Trip - Vacation 2012 (Europe)/Rogue Trip - Vacation 2012 (Europe).cue",
+]
+disc_serials = [
+  "SLUS-00643",
+  "SLUS-00643",
+  "SLES-01417",
+]
 load_address = "0x800EFA20"
 entry_pc = "0x801549B0"
 text_size = "0x000D4000"
 stack_base = "0x801FFFF0"
 
-# Digests are for data Track 01 (first BINARY FILE / TRACK 01).
 [prepare_disc]
 out_dir = "disc"
 bin_name = "Rogue Trip - Vacation 2012 (USA) (Track 01).bin"
 cue_name = "Rogue Trip - Vacation 2012 (USA).cue"
 boot_exe = "SLUS_006.43"
-known_sizes = [292442976]
+known_sizes = [292442976, 737878848, 740421360]
 known_md5 = [
   "6a950ab677e902dcecebc8f57cb4b7f9",
+  "3737bfaffca88dd9e1c42c1d392a89a1",
+  "d69a9218d3acd7d21e98229e95d59de9",
+  "215586131b37683c0b14a5c681c66c32",
 ]
 known_sha1 = [
   "75c180b48bd37ff4045b6c77ab3c295d816142cb",
+  "e6b5c7e38b1eb0260b735f1030781eb8aead3a9a",
+  "f042ab6649ff9caa37bffa56f48d5e498e208110",
+  "c75bac1412e84bf5c9475c9ba29db47574b0fadc",
 ]
 known_crc32 = [
   "e9f241dd",
+  "dc582eb9",
+  "b51e4192",
+  "268c4934",
 ]
 
 [recompiler]
@@ -37,6 +58,7 @@ strict = true
 [runtime]
 window_title = "Rogue Trip - Vacation 2012 Recompiled"
 memcard_dir = "saves"
+overlay_cache = true
 
 [video]
 renderer = "opengl"
@@ -44,10 +66,14 @@ aspect_ratio = "4:3"
 
 [controller]
 default_mode = "digital"
+multitap_analog = true
 
-# Online mount gate: digests + track count + optional TOC fingerprint
-# (see docs/NETPLAY.md).
 [netplay]
 require_cue = true
 required_tracks = 17
 required_disc_fp = "c4b247724560c4bd88ae0ccfbd04356b3a0add69b625e82f3fa3c928198fe168"
+required_disc_fps = [
+  "c4b247724560c4bd88ae0ccfbd04356b3a0add69b625e82f3fa3c928198fe168",
+  "c4b247724560c4bd88ae0ccfbd04356b3a0add69b625e82f3fa3c928198fe168",
+  "0df34055a666262f65baaddc0a699f63a933695c99c9d6bba619793ff5fe5ea4",
+]

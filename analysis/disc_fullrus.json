@@ -1,0 +1,2004 @@
+{
+  "disc_input": "_game_files/Rogue Trip - Vacation 2012 (FullRUS)/Rogue Trip - Vacation 2012 (FullRUS).cue",
+  "data_track": "_game_files/Rogue Trip - Vacation 2012 (FullRUS)/Rogue Trip - Vacation 2012 (FullRUS).bin",
+  "track_count": 17,
+  "digests_full_bin": {
+    "size": 737878848,
+    "md5": "3737bfaffca88dd9e1c42c1d392a89a1",
+    "sha1": "e6b5c7e38b1eb0260b735f1030781eb8aead3a9a",
+    "crc32": "dc582eb9"
+  },
+  "digests_track01": {
+    "size": 292442976,
+    "md5": "c48f22d68ad8bdd37fb3f3a612891a2c",
+    "sha1": "f99803dd17fa650000b8214a04d002500b67c3e7",
+    "crc32": "7ff109cc"
+  },
+  "verification_against_stock_usa": {
+    "size_ok": true,
+    "md5_ok": false,
+    "sha1_ok": false,
+    "crc32_ok": false,
+    "tracks_ok": true,
+    "missing_bins": []
+  },
+  "file_count": 247,
+  "files": [
+    {
+      "path": "DMD/A51.DMD",
+      "lba": 9981,
+      "size": 665152,
+      "magic_hex": "4458535043000000b8e6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/AIRPORT.DMD",
+      "lba": 10306,
+      "size": 639044,
+      "magic_hex": "44585350430000001fe8e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/B1.DMD",
+      "lba": 10619,
+      "size": 21124,
+      "magic_hex": "44585350430000000ee7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/B2.DMD",
+      "lba": 10630,
+      "size": 31512,
+      "magic_hex": "445853504300000012e7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/B3.DMD",
+      "lba": 10646,
+      "size": 106412,
+      "magic_hex": "445853504300000025e7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/BC.DMD",
+      "lba": 10698,
+      "size": 26216,
+      "magic_hex": "4458535043000000ece6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/BH.DMD",
+      "lba": 10711,
+      "size": 21128,
+      "magic_hex": "4458535043000000f4e6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/DA.DMD",
+      "lba": 10722,
+      "size": 25728,
+      "magic_hex": "4458535043000000e7e6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/DC.DMD",
+      "lba": 10735,
+      "size": 642968,
+      "magic_hex": "4458535043000000cbe7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/FS.DMD",
+      "lba": 11049,
+      "size": 14340,
+      "magic_hex": "445853504300000028e7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/FUN.DMD",
+      "lba": 11057,
+      "size": 380780,
+      "magic_hex": "4458535043000000a0e9e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/GB.DMD",
+      "lba": 11243,
+      "size": 23232,
+      "magic_hex": "445853504300000004e7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/GHOST.DMD",
+      "lba": 11255,
+      "size": 305088,
+      "magic_hex": "4458535043000000bce8e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/GREEK.DMD",
+      "lba": 11404,
+      "size": 584068,
+      "magic_hex": "4458535043000000ee53ec35d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/HE.DMD",
+      "lba": 11690,
+      "size": 12892,
+      "magic_hex": "44585350430000002ae7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/HOLLY.DMD",
+      "lba": 11697,
+      "size": 665376,
+      "magic_hex": "445853504300000072e9e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/IT.DMD",
+      "lba": 12022,
+      "size": 24088,
+      "magic_hex": "4458535043000000dfe6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/MW.DMD",
+      "lba": 12034,
+      "size": 20264,
+      "magic_hex": "4458535043000000e2e6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/NUKE.DMD",
+      "lba": 12044,
+      "size": 615712,
+      "magic_hex": "4458535043000000f657ed35d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/OZ.DMD",
+      "lba": 12345,
+      "size": 22216,
+      "magic_hex": "4458535043000000f8e6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/PARK.DMD",
+      "lba": 12356,
+      "size": 631840,
+      "magic_hex": "445853504300000092e8e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/PY.DMD",
+      "lba": 12665,
+      "size": 23532,
+      "magic_hex": "4458535043000000f0e6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/RR.DMD",
+      "lba": 12677,
+      "size": 24156,
+      "magic_hex": "4458535043000000dbe6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/SANFRAN.DMD",
+      "lba": 12689,
+      "size": 634880,
+      "magic_hex": "44585350430000007fe7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/SOCAL.DMD",
+      "lba": 12999,
+      "size": 603928,
+      "magic_hex": "4458535043000000e76bed35d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/SW.DMD",
+      "lba": 13294,
+      "size": 21308,
+      "magic_hex": "4458535043000000fee6e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/TOURIST0.DMD",
+      "lba": 13305,
+      "size": 25928,
+      "magic_hex": "44585350430000009ee7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/TOURIST1.DMD",
+      "lba": 13318,
+      "size": 19604,
+      "magic_hex": "4458535043000000a1e7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/TOURIST2.DMD",
+      "lba": 13328,
+      "size": 24176,
+      "magic_hex": "4458535043000000ed29ec35d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/TOURIST3.DMD",
+      "lba": 13340,
+      "size": 25432,
+      "magic_hex": "4458535043000000a6e7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/VEGAS.DMD",
+      "lba": 13353,
+      "size": 640892,
+      "magic_hex": "445853504300000057e8e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "DMD/VM.DMD",
+      "lba": 13666,
+      "size": 23800,
+      "magic_hex": "44585350430000000ae7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIE.BIN",
+      "lba": 449,
+      "size": 72944,
+      "magic_hex": "4d4445435f726573743a626164206f70",
+      "magic_ascii": "MDEC_res",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/BOSSEND.STR",
+      "lba": 120503,
+      "size": 6944768,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/DUKE.STR",
+      "lba": 98023,
+      "size": 46039040,
+      "magic_hex": "600101800000090001000000ec150000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END112.STR",
+      "lba": 13830,
+      "size": 9975808,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END128.STR",
+      "lba": 18701,
+      "size": 10336256,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END144.STR",
+      "lba": 23748,
+      "size": 10057728,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END16.STR",
+      "lba": 28659,
+      "size": 10008576,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END160.STR",
+      "lba": 33546,
+      "size": 10565632,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END176.STR",
+      "lba": 38705,
+      "size": 9697280,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END32.STR",
+      "lba": 43440,
+      "size": 10008576,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END48.STR",
+      "lba": 48327,
+      "size": 9844736,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END64.STR",
+      "lba": 53134,
+      "size": 10336256,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END80.STR",
+      "lba": 58181,
+      "size": 10221568,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/END96.STR",
+      "lba": 63172,
+      "size": 9992192,
+      "magic_hex": "600101800000090001000000741c0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/GTLOGO.STR",
+      "lba": 68051,
+      "size": 3094528,
+      "magic_hex": "600101800000090001000000980a0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/OPENMOV.STR",
+      "lba": 69562,
+      "size": 41220096,
+      "magic_hex": "6001018000000a0001000000980a0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/STLOGO.STR",
+      "lba": 89689,
+      "size": 3700736,
+      "magic_hex": "600101800000090001000000980a0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MOVIES/TUTOR15.STR",
+      "lba": 91496,
+      "size": 13367296,
+      "magic_hex": "600101800000090001000000980a0000",
+      "magic_ascii": "`.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/A51EARTH.DA",
+      "lba": 164285,
+      "size": 27492352,
+      "magic_hex": "000000000100ffff0300000006000100",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/A51MOON.DA",
+      "lba": 271568,
+      "size": 28264448,
+      "magic_hex": "04000c0000000d000a000d0000000900",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/AIRPORT.DA",
+      "lba": 124488,
+      "size": 24313856,
+      "magic_hex": "00000000000000000000000000000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/BLANK.DA",
+      "lba": 300038,
+      "size": 28028928,
+      "magic_hex": "180011002100f6ff3a000f0021001000",
+      "magic_ascii": "....!...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/BOSS.DA",
+      "lba": 285519,
+      "size": 17070080,
+      "magic_hex": "000000000b00040012000a0019001000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/CREDIT.DA",
+      "lba": 294004,
+      "size": 12050432,
+      "magic_hex": "00000000fefffefffdff0100feff0600",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/DC.DA",
+      "lba": 150164,
+      "size": 28612608,
+      "magic_hex": "07000000070003000300feff0300feff",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/FUN.DA",
+      "lba": 177859,
+      "size": 9547776,
+      "magic_hex": "0c000100090004001000080015000800",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/GHOST.DA",
+      "lba": 252701,
+      "size": 10674176,
+      "magic_hex": "00000000ffffffff00000000ffffffff",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/GREEK.DA",
+      "lba": 196701,
+      "size": 27432960,
+      "magic_hex": "620000028f0035028c00590293007502",
+      "magic_ascii": "b.....5.",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/HOLLY.DA",
+      "lba": 136510,
+      "size": 27656192,
+      "magic_hex": "00000000000000000000000000000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/NUKE.DA",
+      "lba": 258063,
+      "size": 27351040,
+      "magic_hex": "00000000000000000000000000000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/PARK.DA",
+      "lba": 224507,
+      "size": 29022208,
+      "magic_hex": "0100fffffffff8ff0400feff07000100",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/SANFRAN.DA",
+      "lba": 238828,
+      "size": 28104704,
+      "magic_hex": "fffffffffafff8fffafff8fffafff8ff",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/SOCAL.DA",
+      "lba": 210246,
+      "size": 28899328,
+      "magic_hex": "e6ffdfffe7ffdeffe6ffdeffe5ffdbff",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "MUSIC/VEGAS.DA",
+      "lba": 182671,
+      "size": 28426240,
+      "magic_hex": "1b001d0023001200260009002600f7ff",
+      "magic_ascii": "....#...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/A51.BIN",
+      "lba": 5937,
+      "size": 16864,
+      "magic_hex": "060000000000000010400000004d0000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/AIRPORT.BIN",
+      "lba": 5946,
+      "size": 18744,
+      "magic_hex": "050000009c601f80d4621f8018651f80",
+      "magic_ascii": ".....`..",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/DC.BIN",
+      "lba": 5956,
+      "size": 24024,
+      "magic_hex": "04000000000000006400000000000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/FUN.BIN",
+      "lba": 5968,
+      "size": 2032,
+      "magic_hex": "0c000000514c4f584e572020256c7820",
+      "magic_ascii": "....QLOX",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/GHOST.BIN",
+      "lba": 5969,
+      "size": 3024,
+      "magic_hex": "0a000000000000006400000000000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/GREEK.BIN",
+      "lba": 5971,
+      "size": 4384,
+      "magic_hex": "0d000000e0ffbd271000b0af21800000",
+      "magic_ascii": ".......'",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/MEMC.BIN",
+      "lba": 5974,
+      "size": 20804,
+      "magic_hex": "10000000484f34484e4b202020200000",
+      "magic_ascii": "....HO4H",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/NUKE.BIN",
+      "lba": 5985,
+      "size": 26808,
+      "magic_hex": "0e00000097ffffff92ffffff70000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/PARK.BIN",
+      "lba": 5999,
+      "size": 8896,
+      "magic_hex": "090000006c0080ac0800e00300000000",
+      "magic_ascii": "....l...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/SANFRAN.BIN",
+      "lba": 6004,
+      "size": 9800,
+      "magic_hex": "0b00000088180000a81d0000e8050000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/SHELL.BIN",
+      "lba": 6009,
+      "size": 16180,
+      "magic_hex": "0f00000031204e47504f4b2000000000",
+      "magic_ascii": "....1 NG",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/SOCAL.BIN",
+      "lba": 6017,
+      "size": 19942,
+      "magic_hex": "08000000e81900006803000060040000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "OVR/VEGAS.BIN",
+      "lba": 6027,
+      "size": 18440,
+      "magic_hex": "07000000000000000000000050000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/A51.PTS",
+      "lba": 13679,
+      "size": 20088,
+      "magic_hex": "b1f4ffff72fbffff1c00000001000700",
+      "magic_ascii": "....r...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/A51.RST",
+      "lba": 13689,
+      "size": 2048,
+      "magic_hex": "d7000000d7000000d7000000a6ffffff",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/AIR.PTS",
+      "lba": 13690,
+      "size": 20088,
+      "magic_hex": "f63a000002f6ffff0b00000001002d00",
+      "magic_ascii": ".:......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/AIRPORT.RST",
+      "lba": 13700,
+      "size": 2048,
+      "magic_hex": "b4000000a0000000ca000000a6ffffff",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/DC.PTS",
+      "lba": 13701,
+      "size": 20088,
+      "magic_hex": "3a100000ff1100000600000001000200",
+      "magic_ascii": ":.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/DC.RST",
+      "lba": 13711,
+      "size": 2048,
+      "magic_hex": "41000000480000005a00000013000000",
+      "magic_ascii": "A...H...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/FUN.PTS",
+      "lba": 13712,
+      "size": 20088,
+      "magic_hex": "ad010000defeffff0600000006000a00",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/FUN.RST",
+      "lba": 13722,
+      "size": 2048,
+      "magic_hex": "7800000082000000d200000014000000",
+      "magic_ascii": "x.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/GHOST.PTS",
+      "lba": 13723,
+      "size": 20088,
+      "magic_hex": "7cf2ffff3f0a00008e0000000100ffff",
+      "magic_ascii": "|...?...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/GHOST.RST",
+      "lba": 13733,
+      "size": 2048,
+      "magic_hex": "9000000086000000e90000002d000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/GREEK.PTS",
+      "lba": 13734,
+      "size": 20088,
+      "magic_hex": "dcc4ffffbdc4ffff2603000001001b00",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/GREEK.RST",
+      "lba": 13744,
+      "size": 2048,
+      "magic_hex": "80000000a0000000ff0000001e000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/HOLLY.PTS",
+      "lba": 13745,
+      "size": 20088,
+      "magic_hex": "3bd1ffffaef8ffffc601000001000700",
+      "magic_ascii": ";.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/HOLLY.RST",
+      "lba": 13755,
+      "size": 2048,
+      "magic_hex": "f7000000d7000000d7000000a6ffffff",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/ISL.PTS",
+      "lba": 13756,
+      "size": 20088,
+      "magic_hex": "f63a000002f6ffff0b00000001002d00",
+      "magic_ascii": ".:......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/MOON.PTS",
+      "lba": 13766,
+      "size": 15840,
+      "magic_hex": "f63a000002f6ffff0b00000001002d00",
+      "magic_ascii": ".:......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/NUKE.PTS",
+      "lba": 13774,
+      "size": 20088,
+      "magic_hex": "8402000084100000d6ffffff01000300",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/NUKE.RST",
+      "lba": 13784,
+      "size": 2048,
+      "magic_hex": "140000005d0000001400000019000000",
+      "magic_ascii": "....]...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/PARK.PTS",
+      "lba": 13785,
+      "size": 20088,
+      "magic_hex": "910400002a1e00000702000001003000",
+      "magic_ascii": "....*...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/PARK.RST",
+      "lba": 13795,
+      "size": 2048,
+      "magic_hex": "94000000a7000000fd00000015000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/SAN.PTS",
+      "lba": 13796,
+      "size": 20088,
+      "magic_hex": "7bfbffffbb3000005207000001000400",
+      "magic_ascii": "{....0..",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/SANFRAN.RST",
+      "lba": 13806,
+      "size": 2048,
+      "magic_hex": "0001000000010000000100002d000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/SOCAL.PTS",
+      "lba": 13807,
+      "size": 20088,
+      "magic_hex": "06eaffff080000002502000001004600",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/SOCAL.RST",
+      "lba": 13817,
+      "size": 2048,
+      "magic_hex": "db000000cd000000dc000000a6ffffff",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/VEGAS.PTS",
+      "lba": 13818,
+      "size": 20088,
+      "magic_hex": "361a0000b7f5ffff9507000007000200",
+      "magic_ascii": "6.......",
+      "is_psx_exe": false
+    },
+    {
+      "path": "PTS/VEGAS.RST",
+      "lba": 13828,
+      "size": 2048,
+      "magic_hex": "aa000000aa000000aa0000000a000000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO112.TIM",
+      "lba": 3501,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO128.TIM",
+      "lba": 3577,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO144.TIM",
+      "lba": 3653,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO16.TIM",
+      "lba": 3729,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO160.TIM",
+      "lba": 3805,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO176.TIM",
+      "lba": 3881,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO208.TIM",
+      "lba": 3957,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO224.TIM",
+      "lba": 4033,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO240.TIM",
+      "lba": 4109,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO256.TIM",
+      "lba": 4185,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO272.TIM",
+      "lba": 4261,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO32.TIM",
+      "lba": 4337,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO48.TIM",
+      "lba": 4413,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO64.TIM",
+      "lba": 4489,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO80.TIM",
+      "lba": 4565,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BIOS/BIO96.TIM",
+      "lba": 4641,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BLVLSEL.TMS",
+      "lba": 486,
+      "size": 90176,
+      "magic_hex": "54585350430000000000000002000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BOSS2.TIM",
+      "lba": 531,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/BOSS3.TIM",
+      "lba": 607,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CARS.DMD",
+      "lba": 683,
+      "size": 201032,
+      "magic_hex": "44585350430000005be7e935d0010280",
+      "magic_ascii": "DXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CARS.TMS",
+      "lba": 782,
+      "size": 422024,
+      "magic_hex": "54585350430000005be7e9351f000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CARSEL.TMS",
+      "lba": 989,
+      "size": 329632,
+      "magic_hex": "54585350430000000000000017000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CONALOG.TIM",
+      "lba": 1150,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CONTROL.TIM",
+      "lba": 1226,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CONTSTOP.TIM",
+      "lba": 1302,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/COPYRT.TIM",
+      "lba": 1378,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREDLLT.TIM",
+      "lba": 4718,
+      "size": 532,
+      "magic_hex": "10000000020000000c02000080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREDRLT.TIM",
+      "lba": 4719,
+      "size": 532,
+      "magic_hex": "10000000020000000c02000080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREND1.TIM",
+      "lba": 4720,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREND2.TIM",
+      "lba": 4796,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREND3.TIM",
+      "lba": 4872,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREND4.TIM",
+      "lba": 4948,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREND5.TIM",
+      "lba": 5024,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREND6.TIM",
+      "lba": 5100,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREND7.TIM",
+      "lba": 5176,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CREND8.TIM",
+      "lba": 5252,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CROPT1.TIM",
+      "lba": 5328,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CROPT2.TIM",
+      "lba": 5404,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CROPT3.TIM",
+      "lba": 5480,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CROPT4.TIM",
+      "lba": 5556,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CROPT5.TIM",
+      "lba": 5632,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CROPT6.TIM",
+      "lba": 5708,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CROPT7.TIM",
+      "lba": 5784,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/CR/CROPT8.TIM",
+      "lba": 5860,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/DUKE.TIM",
+      "lba": 3424,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/FONT.TIM",
+      "lba": 1454,
+      "size": 8256,
+      "magic_hex": "10000000080000002c0000000000e001",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/LITS.TMS",
+      "lba": 1459,
+      "size": 184624,
+      "magic_hex": "5458535043000000000000000c000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/LOADAP.TIM",
+      "lba": 1550,
+      "size": 153620,
+      "magic_hex": "10000000020000000c58020080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/LOADING.TIM",
+      "lba": 1626,
+      "size": 9666,
+      "magic_hex": "1000000002000000ba25000080020000",
+      "magic_ascii": "........",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/LVLSEL.TMS",
+      "lba": 1631,
+      "size": 607760,
+      "magic_hex": "54585350430000000000000010000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/LVLTR.TMS",
+      "lba": 1928,
+      "size": 520524,
+      "magic_hex": "5458535043000000000000000b000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/LVLTR1.TMS",
+      "lba": 2183,
+      "size": 475444,
+      "magic_hex": "5458535043000000000000000a000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/MAIN.TMS",
+      "lba": 2416,
+      "size": 123556,
+      "magic_hex": "54585350430000000000000002000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/MEMCARD.TMS",
+      "lba": 2477,
+      "size": 239388,
+      "magic_hex": "54585350430000000000000021000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/MP.TMS",
+      "lba": 2594,
+      "size": 123556,
+      "magic_hex": "54585350430000000000000002000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/MT.TMS",
+      "lba": 2655,
+      "size": 615584,
+      "magic_hex": "54585350430000000000000006000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/ONEP.TMS",
+      "lba": 2956,
+      "size": 123556,
+      "magic_hex": "54585350430000000000000002000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/OPT.TMS",
+      "lba": 3017,
+      "size": 369844,
+      "magic_hex": "54585350430000000000000017000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELL/RTSHELL.VAB",
+      "lba": 3198,
+      "size": 462352,
+      "magic_hex": "704241560700000000000000100e0700",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/ALIEN.VAB",
+      "lba": 123895,
+      "size": 40128,
+      "magic_hex": "704241560700000000000000c09c0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/BIGDAD.VAB",
+      "lba": 123915,
+      "size": 43568,
+      "magic_hex": "70424156070000000000000030aa0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/BIGGS.VAB",
+      "lba": 123937,
+      "size": 31552,
+      "magic_hex": "704241560700000000000000407b0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/BUNNY.VAB",
+      "lba": 123953,
+      "size": 38128,
+      "magic_hex": "704241560700000000000000f0940000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/ELVIS.VAB",
+      "lba": 123972,
+      "size": 36272,
+      "magic_hex": "704241560700000000000000b08d0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/FRANS.VAB",
+      "lba": 123990,
+      "size": 30320,
+      "magic_hex": "70424156070000000000000070760000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/GATOR.VAB",
+      "lba": 124005,
+      "size": 25216,
+      "magic_hex": "70424156070000000000000080620000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/HELI.VAB",
+      "lba": 124018,
+      "size": 60656,
+      "magic_hex": "704241560700000000000000f0ec0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/NECRO.VAB",
+      "lba": 124048,
+      "size": 34080,
+      "magic_hex": "70424156070000000000000020850000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/NIGHT.VAB",
+      "lba": 124065,
+      "size": 42816,
+      "magic_hex": "70424156070000000000000040a70000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/NUN.VAB",
+      "lba": 124086,
+      "size": 19776,
+      "magic_hex": "704241560700000000000000404d0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/ORANGE.VAB",
+      "lba": 124096,
+      "size": 49088,
+      "magic_hex": "704241560700000000000000c0bf0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/OZONE.VAB",
+      "lba": 124120,
+      "size": 35504,
+      "magic_hex": "704241560700000000000000b08a0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/RATMAN.VAB",
+      "lba": 124138,
+      "size": 31632,
+      "magic_hex": "704241560700000000000000907b0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/SNAKE.VAB",
+      "lba": 124154,
+      "size": 22768,
+      "magic_hex": "704241560700000000000000f0580000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SHELLVOS/STILL.VAB",
+      "lba": 124166,
+      "size": 42272,
+      "magic_hex": "70424156070000000000000020a50000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SLUS_006.43",
+      "lba": 23,
+      "size": 870400,
+      "magic_hex": "50532d58204558450000000000000000",
+      "magic_ascii": "PS-X EXE",
+      "is_psx_exe": true
+    },
+    {
+      "path": "SND/A51.VAB",
+      "lba": 9181,
+      "size": 23776,
+      "magic_hex": "704241560700000000000000e05c0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/AIRPORT.VAB",
+      "lba": 9151,
+      "size": 30336,
+      "magic_hex": "70424156070000000000000080760000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/B1.VAB",
+      "lba": 9166,
+      "size": 12608,
+      "magic_hex": "70424156070000000000000040310000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/B2.VAB",
+      "lba": 9173,
+      "size": 16272,
+      "magic_hex": "704241560700000000000000903f0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/B3.VAB",
+      "lba": 9209,
+      "size": 122304,
+      "magic_hex": "704241560700000000000000c0dd0100",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/BC.VAB",
+      "lba": 9269,
+      "size": 13488,
+      "magic_hex": "704241560700000000000000b0340000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/BH.VAB",
+      "lba": 9276,
+      "size": 14496,
+      "magic_hex": "704241560700000000000000a0380000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/DA.VAB",
+      "lba": 9284,
+      "size": 14176,
+      "magic_hex": "70424156070000000000000060370000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/DC.VAB",
+      "lba": 9291,
+      "size": 7616,
+      "magic_hex": "704241560700000000000000c01d0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/FUN.VAB",
+      "lba": 9193,
+      "size": 31728,
+      "magic_hex": "704241560700000000000000f07b0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/GB.VAB",
+      "lba": 9295,
+      "size": 15136,
+      "magic_hex": "704241560700000000000000203b0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/GHOST.VAB",
+      "lba": 9303,
+      "size": 24192,
+      "magic_hex": "704241560700000000000000805e0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/GREEK.VAB",
+      "lba": 9315,
+      "size": 7104,
+      "magic_hex": "704241560700000000000000c01b0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/HOLLY.VAB",
+      "lba": 9319,
+      "size": 6592,
+      "magic_hex": "704241560700000000000000c0190000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/INTRO.VAB",
+      "lba": 9323,
+      "size": 139280,
+      "magic_hex": "70424156070000000000000010200200",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/IT.VAB",
+      "lba": 9392,
+      "size": 15104,
+      "magic_hex": "704241560700000000000000003b0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/MW.VAB",
+      "lba": 9400,
+      "size": 12912,
+      "magic_hex": "70424156070000000000000070320000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/NUKE.VAB",
+      "lba": 9407,
+      "size": 7104,
+      "magic_hex": "704241560700000000000000c01b0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/OZ.VAB",
+      "lba": 9411,
+      "size": 14816,
+      "magic_hex": "704241560700000000000000e0390000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/PARK.VAB",
+      "lba": 9419,
+      "size": 6592,
+      "magic_hex": "704241560700000000000000c0190000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/PY.VAB",
+      "lba": 9423,
+      "size": 15040,
+      "magic_hex": "704241560700000000000000c03a0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/RR.VAB",
+      "lba": 9431,
+      "size": 14736,
+      "magic_hex": "70424156070000000000000090390000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/RTCORE.VAB",
+      "lba": 9439,
+      "size": 392096,
+      "magic_hex": "704241560700000000000000a0fb0500",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/RTSHELL.VAB",
+      "lba": 9631,
+      "size": 462352,
+      "magic_hex": "704241560700000000000000100e0700",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/SANFRAN.VAB",
+      "lba": 9857,
+      "size": 20912,
+      "magic_hex": "704241560700000000000000b0510000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/SOCAL.VAB",
+      "lba": 9868,
+      "size": 32256,
+      "magic_hex": "704241560700000000000000007e0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/SW.VAB",
+      "lba": 9884,
+      "size": 13008,
+      "magic_hex": "704241560700000000000000d0320000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/TOURIST0.VAB",
+      "lba": 9891,
+      "size": 32832,
+      "magic_hex": "70424156070000000000000040800000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/TOURIST1.VAB",
+      "lba": 9908,
+      "size": 36800,
+      "magic_hex": "704241560700000000000000c08f0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/TOURIST2.VAB",
+      "lba": 9926,
+      "size": 32224,
+      "magic_hex": "704241560700000000000000e07d0000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/TOURIST3.VAB",
+      "lba": 9942,
+      "size": 37424,
+      "magic_hex": "70424156070000000000000030920000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/VEGAS.VAB",
+      "lba": 9961,
+      "size": 21712,
+      "magic_hex": "704241560700000000000000d0540000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SND/VM.VAB",
+      "lba": 9972,
+      "size": 14480,
+      "magic_hex": "70424156070000000000000090380000",
+      "magic_ascii": "pBAV....",
+      "is_psx_exe": false
+    },
+    {
+      "path": "SYSTEM.CNF",
+      "lba": 448,
+      "size": 68,
+      "magic_hex": "424f4f54203d206364726f6d3a5c534c",
+      "magic_ascii": "BOOT = c",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/A51.TMS",
+      "lba": 6038,
+      "size": 541448,
+      "magic_hex": "5458535043000000b8e6e935ef000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/AIRPORT.TMS",
+      "lba": 6303,
+      "size": 500152,
+      "magic_hex": "54585350430000001fe8e93501010000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/B1.TMS",
+      "lba": 6548,
+      "size": 20496,
+      "magic_hex": "54585350430000000ee7e93504000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/B2.TMS",
+      "lba": 6559,
+      "size": 18376,
+      "magic_hex": "545853504300000012e7e93503000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/B3.TMS",
+      "lba": 6568,
+      "size": 60048,
+      "magic_hex": "545853504300000025e7e9350c000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/BC.TMS",
+      "lba": 6598,
+      "size": 21992,
+      "magic_hex": "5458535043000000ece6e93507000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/BH.TMS",
+      "lba": 6609,
+      "size": 19952,
+      "magic_hex": "5458535043000000f4e6e93504000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/DA.TMS",
+      "lba": 6619,
+      "size": 23784,
+      "magic_hex": "5458535043000000e7e6e93507000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/DC.TMS",
+      "lba": 6631,
+      "size": 533128,
+      "magic_hex": "5458535043000000cbe7e935ff000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/FS.TMS",
+      "lba": 6892,
+      "size": 2136,
+      "magic_hex": "545853504300000028e7e93501000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/FUN.TMS",
+      "lba": 6894,
+      "size": 480160,
+      "magic_hex": "5458535043000000a0e9e935ca000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/GB.TMS",
+      "lba": 7129,
+      "size": 21728,
+      "magic_hex": "545853504300000004e7e93506000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/GHOST.TMS",
+      "lba": 7140,
+      "size": 512504,
+      "magic_hex": "5458535043000000bce8e935b9000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/GREEK.TMS",
+      "lba": 7391,
+      "size": 414984,
+      "magic_hex": "5458535043000000ee53ec35bb000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/HE.TMS",
+      "lba": 7594,
+      "size": 3304,
+      "magic_hex": "54585350430000002ae7e93503000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/HOLLY.TMS",
+      "lba": 7596,
+      "size": 408968,
+      "magic_hex": "545853504300000072e9e935bf000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/IT.TMS",
+      "lba": 7796,
+      "size": 21080,
+      "magic_hex": "5458535043000000dfe6e93505000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/MW.TMS",
+      "lba": 7807,
+      "size": 20168,
+      "magic_hex": "5458535043000000e2e6e93503000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/NUKE.TMS",
+      "lba": 7817,
+      "size": 457568,
+      "magic_hex": "5458535043000000f657ed35da000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/OZ.TMS",
+      "lba": 8041,
+      "size": 22616,
+      "magic_hex": "5458535043000000f8e6e93505000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/PARK.TMS",
+      "lba": 8053,
+      "size": 546064,
+      "magic_hex": "545853504300000092e8e935f0000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/PY.TMS",
+      "lba": 8320,
+      "size": 20496,
+      "magic_hex": "5458535043000000f0e6e93504000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/RR.TMS",
+      "lba": 8331,
+      "size": 23864,
+      "magic_hex": "5458535043000000dbe6e93505000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/SANFRAN.TMS",
+      "lba": 8343,
+      "size": 517576,
+      "magic_hex": "54585350430000007fe7e935ef000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/SOCAL.TMS",
+      "lba": 8596,
+      "size": 545440,
+      "magic_hex": "5458535043000000e76bed35e6000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/SW.TMS",
+      "lba": 8863,
+      "size": 22176,
+      "magic_hex": "5458535043000000fee6e93506000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/TOURIST0.TMS",
+      "lba": 8874,
+      "size": 10512,
+      "magic_hex": "54585350430000009ee7e93504000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/TOURIST1.TMS",
+      "lba": 8880,
+      "size": 8200,
+      "magic_hex": "5458535043000000a1e7e93507000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/TOURIST2.TMS",
+      "lba": 8885,
+      "size": 8536,
+      "magic_hex": "5458535043000000ed29ec3505000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/TOURIST3.TMS",
+      "lba": 8890,
+      "size": 5464,
+      "magic_hex": "5458535043000000a6e7e93505000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/VEGAS.TMS",
+      "lba": 8893,
+      "size": 502856,
+      "magic_hex": "545853504300000057e8e935e3000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    },
+    {
+      "path": "TMS/VM.TMS",
+      "lba": 9139,
+      "size": 22360,
+      "magic_hex": "54585350430000000ae7e93505000000",
+      "magic_ascii": "TXSPC...",
+      "is_psx_exe": false
+    }
+  ]
+}

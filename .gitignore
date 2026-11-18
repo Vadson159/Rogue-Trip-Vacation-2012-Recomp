@@ -46,3 +46,15 @@ __pycache__/
 
 # Generated shortcut contains the local installation path
 /Rogue Trip Recompiled.desktop
+
+# Local discs, toolchain and diagnostic output
+/_game_files/
+/tools/
+/.venv/
+/disc.cfg
+/rom.cfg
+/psx_freeze_*.json
+/overlay_captures*.json*
+/analysis/exes/
+/analysis/overlays/
+/analysis/verification/
