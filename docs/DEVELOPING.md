@@ -59,6 +59,17 @@ Add `-Jobs N` to adjust build concurrency.
   historical telemetry, logs and screenshots. The harness writes new output
   to the ignored `analysis/verification/full_suite` directory.
 
+Run the analyzer on a boot EXE extracted by the build. For example, with the
+NTSC-U executable:
+
+```powershell
+$analyzer = '.\psxrecomp\recompiler\build\psxrecomp-analyze.exe'
+$out = 'build-analysis/ntsc-u'
+& $analyzer 'disc/SLUS_006.43' --out $out --emit-tsv "$out/functions.tsv" --scan-widescreen --emit-ws-sites "$out/widescreen_candidates.toml"
+```
+
+For the scripted Windows verification:
+
 ```powershell
 $env:ROGUETRIP_GAME_FILES = 'D:\discs'
 python scripts/verify_full_game.py --suite stages_fullrus

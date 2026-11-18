@@ -6,6 +6,7 @@ quickly. Its output establishes coverage for the observed scenarios.
 
 | Disc or scenario | Recorded evidence |
 | --- | --- |
+| Windows Release boot | A clean source checkout built and reached BIOS execution with both the FullRUS and Europe discs. [Boot checks](release-boot.md) |
 | FullRUS, arena coverage | [14 arena and boss scenarios](report_stages_fullrus.json) covering all 12 arenas. Each reported arena sample has an empty overlay-interpreter PC list. [Screenshots](suite1_stages_fullrus/) |
 | FullRUS, campaign | [Report](report_campaign_save_ending.json) covering the first victory, memory-card save, load after relaunch, resumed campaign, final boss, ending videos and credits. [Screenshots](suite2_campaign_save_ending/) |
 | Rus | [Screenshots](suite3_rus/) of the intro, menu, memory-card screen and XLAX. The run artifacts cover these stages of the suite. |
